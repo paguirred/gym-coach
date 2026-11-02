@@ -1,0 +1,20 @@
+{
+  "name": "Coach G3000",
+  "short_name": "Coach G3000",
+  "description": "Coach personal de gimnasio para la máquina Ten Series G3000.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0e15",
+  "theme_color": "#0a0e15",
+  "lang": "es-CL",
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

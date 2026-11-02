@@ -1,0 +1,283 @@
+/* =========================================================================
+   Coach G3000 — tema oscuro "fitness" con acento lima.
+   Mobile-first, botones grandes (manos sudadas, teléfono apoyado).
+   ========================================================================= */
+
+:root {
+  --accent: #c6f24e;         /* lima energético */
+  --accent-2: #35d07f;       /* verde */
+  --accent-grad: linear-gradient(135deg, #c6f24e 0%, #35d07f 100%);
+  --accent-soft: rgba(198, 242, 78, 0.14);
+
+  --bg: #0a0e15;
+  --surface: #141b27;
+  --surface-2: #1b2434;
+  --line: rgba(255, 255, 255, 0.07);
+  --line-strong: rgba(255, 255, 255, 0.12);
+
+  --text: #eaf0f7;
+  --muted: #8b97a8;
+
+  /* Overrides de Bootstrap para que herede el tema */
+  --bs-body-bg: var(--bg);
+  --bs-body-color: var(--text);
+  --bs-body-font-family: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --bs-border-radius: 16px;
+  --bs-primary: #c6f24e;
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  background: var(--bg);
+}
+
+body {
+  font-family: var(--bs-body-font-family);
+  color: var(--text);
+  /* resplandor sutil del acento arriba, sobre el fondo oscuro */
+  background:
+    radial-gradient(1100px 520px at 50% -8%, rgba(198, 242, 78, 0.10), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(53, 208, 127, 0.06), transparent 55%),
+    var(--bg);
+  background-attachment: fixed;
+  overscroll-behavior-y: contain;
+  letter-spacing: 0.1px;
+}
+
+.app-shell {
+  min-height: 100dvh;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+#app { padding-bottom: 2rem; }
+
+/* ---- Tipografía ---------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6, .h5 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.text-muted { color: var(--muted) !important; }
+.small { font-size: 0.83rem; }
+
+/* ---- Tarjetas ------------------------------------------------------------ */
+.card {
+  background: linear-gradient(180deg, var(--surface) 0%, #121824 100%);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.38);
+  overflow: hidden;
+}
+.card-body { padding: 1.25rem; }
+.card.border-success { border-color: rgba(53, 208, 127, 0.45); }
+
+/* ---- Botones ------------------------------------------------------------- */
+.btn {
+  font-weight: 700;
+  border-radius: 14px;
+  transition: transform 0.06s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+.btn:active { transform: translateY(1px) scale(0.99); }
+.btn-lg {
+  padding: 0.95rem 1.1rem;
+  font-size: 1.12rem;
+  border-radius: 16px;
+}
+
+/* Acción principal: degradado lima con texto oscuro y brillo */
+.btn-primary,
+.btn-success {
+  background: var(--accent-grad);
+  border: none;
+  color: #08210f;
+  box-shadow: 0 10px 26px rgba(198, 242, 78, 0.22);
+}
+.btn-primary:hover, .btn-primary:focus,
+.btn-success:hover, .btn-success:focus {
+  background: var(--accent-grad);
+  color: #08210f;
+  filter: brightness(1.05);
+  box-shadow: 0 12px 30px rgba(198, 242, 78, 0.32);
+}
+.btn-primary:disabled, .btn-success:disabled { opacity: 0.55; }
+
+.btn-outline-primary,
+.btn-outline-secondary {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+}
+.btn-outline-primary:hover,
+.btn-outline-secondary:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: #fff;
+}
+.btn-outline-danger { border-color: rgba(255, 99, 99, 0.5); color: #ff8f8f; }
+.btn-outline-danger:hover { background: rgba(255, 99, 99, 0.14); color: #fff; }
+
+.btn-link { color: var(--accent); text-decoration: none; font-weight: 600; }
+.btn-link:hover { color: #dcff86; }
+
+/* Botón-ícono circular (⚙️, volver) */
+.icon-btn {
+  width: 44px; height: 44px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
+  font-size: 1.15rem;
+  color: var(--text);
+}
+.icon-btn:active { transform: scale(0.94); }
+
+/* ---- Inputs -------------------------------------------------------------- */
+/* Ojo: en .form-select se usa background-COLOR, no el atajo `background`,
+   porque el atajo borra la flecha del desplegable (se pierde la affordance). */
+.form-control, .form-select {
+  background-color: #0d131e;
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+  border-radius: 14px;
+}
+.form-select {
+  min-height: 44px; /* objetivo táctil en móvil */
+  font-weight: 600;
+}
+.form-control::placeholder { color: #5c6675; }
+.form-control:focus, .form-select:focus {
+  background-color: #0d131e;
+  color: var(--text);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+.form-control-lg {
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-align: center;
+  padding: 0.8rem;
+  letter-spacing: 0.5px;
+}
+input[type="number"] { -moz-appearance: textfield; }
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.form-label { font-weight: 700; color: #cdd6e2; }
+
+/* ---- Badges -------------------------------------------------------------- */
+.badge {
+  border-radius: 999px;
+  font-weight: 700;
+  padding: 0.4em 0.75em;
+  letter-spacing: 0.2px;
+}
+.text-bg-secondary { background: rgba(255,255,255,0.08) !important; color: #cfd8e4 !important; }
+.text-bg-light { background: rgba(255,255,255,0.06) !important; color: #aeb8c6 !important; }
+.text-bg-warning { background: rgba(255, 193, 7, 0.16) !important; color: #ffcf4a !important; }
+
+/* ---- Alerts (tinte translúcido + borde de color) ------------------------- */
+.alert {
+  border: 1px solid var(--line);
+  border-left-width: 4px;
+  border-radius: 14px;
+  background: var(--surface-2);
+  color: var(--text);
+}
+.alert-info { background: var(--accent-soft); border-left-color: var(--accent); color: #e7f6c9; }
+.alert-primary { background: rgba(53,208,127,0.12); border-left-color: var(--accent-2); color: #d6f7e6; }
+.alert-success { background: rgba(53,208,127,0.14); border-left-color: var(--accent-2); color: #d6f7e6; }
+.alert-warning { background: rgba(255,193,7,0.12); border-left-color: #ffc107; color: #ffe6a1; }
+.alert-danger { background: rgba(255,84,84,0.13); border-left-color: #ff5454; color: #ffc9c9; }
+
+/* ---- Progreso / temporizador -------------------------------------------- */
+.progress {
+  background: rgba(255,255,255,0.08);
+  border-radius: 999px;
+  height: 16px;
+  overflow: hidden;
+}
+.progress-bar {
+  background: var(--accent-grad);
+  box-shadow: 0 0 16px rgba(198, 242, 78, 0.45);
+  transition: width 0.1s linear;
+}
+
+/* Cuenta regresiva 3-2-1 / número grande */
+#seqCount, .display-1 {
+  font-weight: 800;
+  color: var(--accent);
+  text-shadow: 0 0 30px rgba(198, 242, 78, 0.45);
+  font-variant-numeric: tabular-nums;
+}
+#seqLabel, #restLabel { font-weight: 700; }
+
+/* ---- Listas -------------------------------------------------------------- */
+.list-group { border-radius: 16px; overflow: hidden; gap: 8px; display: flex; flex-direction: column; background: transparent; }
+.list-group-item {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px !important;
+  color: var(--text);
+  padding: 0.9rem 1rem;
+}
+.list-group-item-action:hover { background: var(--surface-2); }
+
+/* ---- Tabla (resumen) ----------------------------------------------------- */
+.table { --bs-table-bg: transparent; color: var(--text); margin-bottom: 0; }
+.table > :not(caption) > * > * { border-color: var(--line); padding: 0.6rem 0.25rem; }
+.table td { color: var(--text); }
+
+/* ---- Cabecera tipo app --------------------------------------------------- */
+.app-header { margin-bottom: 1rem; }
+.avatar {
+  width: 46px; height: 46px; border-radius: 14px;
+  background: var(--accent-grad);
+  color: #08210f; font-weight: 800; font-size: 1.2rem;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 18px rgba(198,242,78,0.28);
+}
+
+/* ---- Login (hero) -------------------------------------------------------- */
+.login-hero { text-align: center; padding: 3.2rem 0 2rem; }
+.login-logo {
+  width: 96px; height: 96px; margin: 0 auto 1.2rem;
+  border-radius: 28px;
+  background: var(--accent-grad);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem;
+  box-shadow: 0 18px 44px rgba(198, 242, 78, 0.3);
+}
+.login-title { font-size: 2rem; font-weight: 800; margin-bottom: 0.35rem; }
+.login-sub { color: var(--muted); margin-bottom: 2rem; }
+
+/* ---- Chips de perfil (elegir quién eres) --------------------------------- */
+.profile-pick { display: flex; flex-direction: column; gap: 12px; }
+.profile-pick .list-group-item { display: flex; align-items: center; gap: 12px; }
+
+/* ---- Descanso: queda pegado arriba para verlo sin hacer scroll ----------- */
+.rest-box {
+  position: sticky;
+  top: 0.5rem;
+  z-index: 5;
+  border: 1px solid var(--accent) !important;
+}
+
+/* ---- Animación del ejercicio -------------------------------------------- */
+.ex-anim-wrap {
+  margin: 0.25rem 0 0.75rem;
+  display: flex;
+  justify-content: center;
+}
+.ex-anim {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  border-radius: 16px;
+}
+
+/* ---- Utilidades ---------------------------------------------------------- */
+.hero-cta { position: relative; }
+.hero-cta::after {
+  content: ""; position: absolute; inset: -2px; border-radius: 18px;
+  background: var(--accent-grad); filter: blur(18px); opacity: 0.25; z-index: -1;
+}

@@ -1,0 +1,7 @@
+# Caché local del CLI de Firebase (se regenera en cada deploy)
+.firebase/
+# Configuración del preview local de esta máquina
+.claude/
+# Sistema
+.DS_Store
+node_modules/

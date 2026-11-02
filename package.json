@@ -1,0 +1,13 @@
+{
+  "name": "coach-g3000",
+  "version": "0.1.0",
+  "private": true,
+  "description": "PWA coach de gimnasio familiar para la máquina Ten Series G3000",
+  "type": "module",
+  "scripts": {
+    "dev": "npx serve public -l 5000",
+    "deploy": "firebase deploy",
+    "deploy:hosting": "firebase deploy --only hosting",
+    "deploy:rules": "firebase deploy --only firestore:rules"
+  }
+}

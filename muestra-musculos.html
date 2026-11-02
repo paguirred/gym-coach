@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="es-CL"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Muestra · figura animada</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root { --accent:#c6f24e; --bg:#0a0e15; --surface:#141b27; --text:#eaf0f7; --muted:#8b97a8; }
+  body { margin:0; padding:16px; background:var(--bg); color:var(--text);
+         font-family:Manrope,system-ui,sans-serif; max-width:520px; margin-inline:auto; }
+  h1 { font-size:1.35rem; margin:.2rem 0 .1rem; }
+  .intro { color:var(--muted); font-size:.9rem; margin-bottom:1.2rem; }
+  section { background:linear-gradient(180deg,var(--surface),#121824); border:1px solid rgba(255,255,255,.07);
+            border-radius:22px; padding:1rem; margin-bottom:1rem; box-shadow:0 14px 34px rgba(0,0,0,.38); }
+  h2 { font-size:1.15rem; font-weight:800; margin:0 0 .15rem; }
+  .sub { color:var(--muted); font-size:.78rem; margin:0 0 .5rem; }
+  .body-map { width:100%; height:auto; }
+  .small { font-size:.85rem; } .text-muted { color:var(--muted); } .mt-1 { margin-top:.4rem; }
+</style></head><body>
+<h1>Figura animada — muestra</h1>
+<p class="intro">La figura hace el movimiento y el músculo principal late en lima.
+Lima tenue = los que ayudan.</p>
+"<section><h2>Press de pecho</h2><p class="sub">Espalda apoyada, empujar los manillares. Tempo 2 seg empuje / 3 seg retorno.</p><svg viewBox="0 0 250 238" class="body-map" xmlns="http://www.w3.org/2000/svg"
+    role="img" aria-label="Movimiento y músculos que trabaja este ejercicio">
+    <rect x="0" y="0" width="250" height="238" rx="16" fill="rgba(255,255,255,0.035)"/>
+    
+  <g transform="translate(2,0)" stroke="rgba(10,14,21,0.35)" stroke-width="0.7" stroke-linejoin="round">
+    <g>
+      <ellipse cx="60" cy="19" rx="11" ry="13.5" fill="#2b3547"/>
+      <path d="M54.5 30 h11 v7.5 q-5.5 2.5 -11 0 z" fill="#2b3547"/>
+      <path d="M49 38 q11 -4 22 0 l9 8 q-20 -5 -40 0 z" fill="#3d4b63"></path>
+      <path d="M59 47 q-11 -1 -18 5 q-3 8 2 14 q9 4 16 -2 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+         <path d="M61 47 q11 -1 18 5 q3 8 -2 14 q-9 4 -16 -2 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+         <path d="M42 68 q-3 16 2 30 l7 -4 q-4 -14 -3 -26 z" fill="#3d4b63"></path>
+         <path d="M78 68 q3 16 -2 30 l-7 -4 q4 -14 3 -26 z" fill="#3d4b63"></path>
+         <path d="M51 67 q9 -3 18 0 q2 17 -1 31 q-8 4 -16 0 q-3 -14 -1 -31 z" fill="#3d4b63"></path>
+      
+    <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="-30 40 48; -10 40 48; -30 40 48"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+      <path d="M40 45 q-11 3 -13 14 q-1 8 3 12 q4 -13 12 -19 z" fill="var(--accent)" fill-opacity="0.42"></path>
+      <path d="M31 66 q-6 10 -4 21 q6 4 10 -1 q1 -12 3 -19 z" fill="#3d4b63"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="-75 32 84; -15 32 84; -75 32 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M27 88 q-3 13 1 24 q6 2 8 -3 q-1 -12 -1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="30" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+      
+    <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="30 80 48; 10 80 48; 30 80 48"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+      <path d="M80 45 q11 3 13 14 q1 8 -3 12 q-4 -13 -12 -19 z" fill="var(--accent)" fill-opacity="0.42"></path>
+      <path d="M89 66 q6 10 4 21 q-6 4 -10 -1 q-1 -12 -3 -19 z" fill="#3d4b63"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="75 88 84; 15 88 84; 75 88 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M93 88 q3 13 -1 24 q-6 2 -8 -3 q1 -12 1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="90" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+    </g>
+    <path d="M49 97 q11 4 22 0 l2 16 q-13 5 -26 0 z" fill="#2b3547"/>
+    
+    
+    <g>
+      <path d="M48 114 q-6 26 -1 44 q8 4 13 -1 q2 -23 2 -43 q-8 3 -14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="53" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M47 169 q-2 23 1 38 q7 3 11 -1 q-1 -20 0 -37 z" fill="#2b3547"/>
+        <path d="M47 205 q6 3 12 0 l1 8 q-7 3 -14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    
+    <g>
+      <path d="M72 114 q6 26 1 44 q-8 4 -13 -1 q-2 -23 -2 -43 q8 3 14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="67" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M73 169 q2 23 -1 38 q-7 3 -11 -1 q1 -20 0 -37 z" fill="#2b3547"/>
+        <path d="M73 205 q-6 3 -12 0 l-1 8 q7 3 14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    <text x="60" y="231" text-anchor="middle" font-size="9" fill="#8b97a8" stroke="none">Frente</text>
+  </g>
+    
+  <g transform="translate(128,0)" stroke="rgba(10,14,21,0.35)" stroke-width="0.7" stroke-linejoin="round">
+    <g>
+      <ellipse cx="60" cy="19" rx="11" ry="13.5" fill="#2b3547"/>
+      <path d="M54.5 30 h11 v7.5 q-5.5 2.5 -11 0 z" fill="#2b3547"/>
+      <path d="M60 36 q-14 2 -21 10 q-2 12 4 22 q8 5 17 5 q9 0 17 -5 q6 -10 4 -22 q-7 -8 -21 -10 z" fill="#3d4b63"></path>
+      <path d="M42 62 q-3 18 4 30 q8 3 13 -2 q-2 -16 -2 -29 q-8 3 -15 1 z" fill="#3d4b63"></path>
+         <path d="M78 62 q3 18 -4 30 q-8 3 -13 -2 q2 -16 2 -29 q8 3 15 1 z" fill="#3d4b63"></path>
+         <path d="M51 92 q9 3 18 0 l2 13 q-11 4 -22 0 z" fill="#3d4b63"></path>
+      
+    <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="-30 40 48; -10 40 48; -30 40 48"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+      <path d="M40 45 q-11 3 -13 14 q-1 8 3 12 q4 -13 12 -19 z" fill="var(--accent)" fill-opacity="0.42"></path>
+      <path d="M31 66 q-6 10 -4 21 q6 4 10 -1 q1 -12 3 -19 z" fill="var(--accent)" fill-opacity="0.42"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="-75 32 84; -15 32 84; -75 32 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M27 88 q-3 13 1 24 q6 2 8 -3 q-1 -12 -1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="30" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+      
+    <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="30 80 48; 10 80 48; 30 80 48"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+      <path d="M80 45 q11 3 13 14 q1 8 -3 12 q-4 -13 -12 -19 z" fill="var(--accent)" fill-opacity="0.42"></path>
+      <path d="M89 66 q6 10 4 21 q-6 4 -10 -1 q-1 -12 -3 -19 z" fill="var(--accent)" fill-opacity="0.42"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="75 88 84; 15 88 84; 75 88 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M93 88 q3 13 -1 24 q-6 2 -8 -3 q1 -12 1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="90" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+    </g>
+    <path d="M49 97 q11 4 22 0 l2 16 q-13 5 -26 0 z" fill="#2b3547"/>
+    <path d="M59 105 q-12 0 -13 10 q0 9 7 11 q6 1 6 -6 z" fill="#3d4b63"></path>
+         <path d="M61 105 q12 0 13 10 q0 9 -7 11 q-6 1 -6 -6 z" fill="#3d4b63"></path>
+    
+    <g>
+      <path d="M48 114 q-6 26 -1 44 q8 4 13 -1 q2 -23 2 -43 q-8 3 -14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="53" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M47 169 q-3 18 0 30 q7 3 11 -1 q-1 -16 0 -29 z" fill="#3d4b63"></path>
+        <path d="M47 205 q6 3 12 0 l1 8 q-7 3 -14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    
+    <g>
+      <path d="M72 114 q6 26 1 44 q-8 4 -13 -1 q-2 -23 -2 -43 q8 3 14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="67" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M73 169 q3 18 0 30 q-7 3 -11 -1 q1 -16 0 -29 z" fill="#3d4b63"></path>
+        <path d="M73 205 q-6 3 -12 0 l-1 8 q7 3 14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    <text x="60" y="231" text-anchor="middle" font-size="9" fill="#8b97a8" stroke="none">Espalda</text>
+  </g>
+  </svg><div class="small mt-1">
+      <span style="color:var(--accent)">●</span> <b>Pecho</b>
+      <span class="text-muted"> · <span style="color:var(--accent);opacity:.45">●</span> Hombros, Tríceps</span>
+    </div></section>
+<section><h2>Mariposa</h2><p class="sub">Antebrazos en las almohadillas, juntar los codos lento y controlado.</p><svg viewBox="0 0 250 238" class="body-map" xmlns="http://www.w3.org/2000/svg"
+    role="img" aria-label="Movimiento y músculos que trabaja este ejercicio">
+    <rect x="0" y="0" width="250" height="238" rx="16" fill="rgba(255,255,255,0.035)"/>
+    
+  <g transform="translate(2,0)" stroke="rgba(10,14,21,0.35)" stroke-width="0.7" stroke-linejoin="round">
+    <g>
+      <ellipse cx="60" cy="19" rx="11" ry="13.5" fill="#2b3547"/>
+      <path d="M54.5 30 h11 v7.5 q-5.5 2.5 -11 0 z" fill="#2b3547"/>
+      <path d="M49 38 q11 -4 22 0 l9 8 q-20 -5 -40 0 z" fill="#3d4b63"></path>
+      <path d="M59 47 q-11 -1 -18 5 q-3 8 2 14 q9 4 16 -2 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+         <path d="M61 47 q11 -1 18 5 q3 8 -2 14 q-9 4 -16 -2 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+         <path d="M42 68 q-3 16 2 30 l7 -4 q-4 -14 -3 -26 z" fill="#3d4b63"></path>
+         <path d="M78 68 q3 16 -2 30 l-7 -4 q4 -14 3 -26 z" fill="#3d4b63"></path>
+         <path d="M51 67 q9 -3 18 0 q2 17 -1 31 q-8 4 -16 0 q-3 -14 -1 -31 z" fill="#3d4b63"></path>
+      
+    <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="-48 40 48; -8 40 48; -48 40 48"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+      <path d="M40 45 q-11 3 -13 14 q-1 8 3 12 q4 -13 12 -19 z" fill="var(--accent)" fill-opacity="0.42"></path>
+      <path d="M31 66 q-6 10 -4 21 q6 4 10 -1 q1 -12 3 -19 z" fill="#3d4b63"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="-20 32 84; -8 32 84; -20 32 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M27 88 q-3 13 1 24 q6 2 8 -3 q-1 -12 -1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="30" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+      
+    <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="48 80 48; 8 80 48; 48 80 48"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+      <path d="M80 45 q11 3 13 14 q1 8 -3 12 q-4 -13 -12 -19 z" fill="var(--accent)" fill-opacity="0.42"></path>
+      <path d="M89 66 q6 10 4 21 q-6 4 -10 -1 q-1 -12 -3 -19 z" fill="#3d4b63"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="20 88 84; 8 88 84; 20 88 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M93 88 q3 13 -1 24 q-6 2 -8 -3 q1 -12 1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="90" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+    </g>
+    <path d="M49 97 q11 4 22 0 l2 16 q-13 5 -26 0 z" fill="#2b3547"/>
+    
+    
+    <g>
+      <path d="M48 114 q-6 26 -1 44 q8 4 13 -1 q2 -23 2 -43 q-8 3 -14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="53" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M47 169 q-2 23 1 38 q7 3 11 -1 q-1 -20 0 -37 z" fill="#2b3547"/>
+        <path d="M47 205 q6 3 12 0 l1 8 q-7 3 -14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    
+    <g>
+      <path d="M72 114 q6 26 1 44 q-8 4 -13 -1 q-2 -23 -2 -43 q8 3 14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="67" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M73 169 q2 23 -1 38 q-7 3 -11 -1 q1 -20 0 -37 z" fill="#2b3547"/>
+        <path d="M73 205 q-6 3 -12 0 l-1 8 q7 3 14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    <text x="60" y="231" text-anchor="middle" font-size="9" fill="#8b97a8" stroke="none">Frente</text>
+  </g>
+    
+  <g transform="translate(128,0)" stroke="rgba(10,14,21,0.35)" stroke-width="0.7" stroke-linejoin="round">
+    <g>
+      <ellipse cx="60" cy="19" rx="11" ry="13.5" fill="#2b3547"/>
+      <path d="M54.5 30 h11 v7.5 q-5.5 2.5 -11 0 z" fill="#2b3547"/>
+      <path d="M60 36 q-14 2 -21 10 q-2 12 4 22 q8 5 17 5 q9 0 17 -5 q6 -10 4 -22 q-7 -8 -21 -10 z" fill="#3d4b63"></path>
+      <path d="M42 62 q-3 18 4 30 q8 3 13 -2 q-2 -16 -2 -29 q-8 3 -15 1 z" fill="#3d4b63"></path>
+         <path d="M78 62 q3 18 -4 30 q-8 3 -13 -2 q2 -16 2 -29 q8 3 15 1 z" fill="#3d4b63"></path>
+         <path d="M51 92 q9 3 18 0 l2 13 q-11 4 -22 0 z" fill="#3d4b63"></path>
+      
+    <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="-48 40 48; -8 40 48; -48 40 48"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+      <path d="M40 45 q-11 3 -13 14 q-1 8 3 12 q4 -13 12 -19 z" fill="var(--accent)" fill-opacity="0.42"></path>
+      <path d="M31 66 q-6 10 -4 21 q6 4 10 -1 q1 -12 3 -19 z" fill="#3d4b63"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="-20 32 84; -8 32 84; -20 32 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M27 88 q-3 13 1 24 q6 2 8 -3 q-1 -12 -1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="30" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+      
+    <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="48 80 48; 8 80 48; 48 80 48"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+      <path d="M80 45 q11 3 13 14 q1 8 -3 12 q-4 -13 -12 -19 z" fill="var(--accent)" fill-opacity="0.42"></path>
+      <path d="M89 66 q6 10 4 21 q-6 4 -10 -1 q-1 -12 -3 -19 z" fill="#3d4b63"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="20 88 84; 8 88 84; 20 88 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M93 88 q3 13 -1 24 q-6 2 -8 -3 q1 -12 1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="90" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+    </g>
+    <path d="M49 97 q11 4 22 0 l2 16 q-13 5 -26 0 z" fill="#2b3547"/>
+    <path d="M59 105 q-12 0 -13 10 q0 9 7 11 q6 1 6 -6 z" fill="#3d4b63"></path>
+         <path d="M61 105 q12 0 13 10 q0 9 -7 11 q-6 1 -6 -6 z" fill="#3d4b63"></path>
+    
+    <g>
+      <path d="M48 114 q-6 26 -1 44 q8 4 13 -1 q2 -23 2 -43 q-8 3 -14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="53" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M47 169 q-3 18 0 30 q7 3 11 -1 q-1 -16 0 -29 z" fill="#3d4b63"></path>
+        <path d="M47 205 q6 3 12 0 l1 8 q-7 3 -14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    
+    <g>
+      <path d="M72 114 q6 26 1 44 q-8 4 -13 -1 q-2 -23 -2 -43 q8 3 14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="67" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M73 169 q3 18 0 30 q-7 3 -11 -1 q1 -16 0 -29 z" fill="#3d4b63"></path>
+        <path d="M73 205 q-6 3 -12 0 l-1 8 q7 3 14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    <text x="60" y="231" text-anchor="middle" font-size="9" fill="#8b97a8" stroke="none">Espalda</text>
+  </g>
+  </svg><div class="small mt-1">
+      <span style="color:var(--accent)">●</span> <b>Pecho</b>
+      <span class="text-muted"> · <span style="color:var(--accent);opacity:.45">●</span> Hombros</span>
+    </div></section>
+<section><h2>Jalón al pecho</h2><p class="sub">Sentado de frente, agarre amplio. Tirar AL PECHO (no al cuello), codos abajo y atrás, omóplatos apretados.</p><svg viewBox="0 0 250 238" class="body-map" xmlns="http://www.w3.org/2000/svg"
+    role="img" aria-label="Movimiento y músculos que trabaja este ejercicio">
+    <rect x="0" y="0" width="250" height="238" rx="16" fill="rgba(255,255,255,0.035)"/>
+    
+  <g transform="translate(2,0)" stroke="rgba(10,14,21,0.35)" stroke-width="0.7" stroke-linejoin="round">
+    <g>
+      <ellipse cx="60" cy="19" rx="11" ry="13.5" fill="#2b3547"/>
+      <path d="M54.5 30 h11 v7.5 q-5.5 2.5 -11 0 z" fill="#2b3547"/>
+      <path d="M49 38 q11 -4 22 0 l9 8 q-20 -5 -40 0 z" fill="#3d4b63"></path>
+      <path d="M59 47 q-11 -1 -18 5 q-3 8 2 14 q9 4 16 -2 z" fill="#3d4b63"></path>
+         <path d="M61 47 q11 -1 18 5 q3 8 -2 14 q-9 4 -16 -2 z" fill="#3d4b63"></path>
+         <path d="M42 68 q-3 16 2 30 l7 -4 q-4 -14 -3 -26 z" fill="#3d4b63"></path>
+         <path d="M78 68 q3 16 -2 30 l-7 -4 q4 -14 3 -26 z" fill="#3d4b63"></path>
+         <path d="M51 67 q9 -3 18 0 q2 17 -1 31 q-8 4 -16 0 q-3 -14 -1 -31 z" fill="#3d4b63"></path>
+      
+    <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="-140 40 48; -18 40 48; -140 40 48"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+      <path d="M40 45 q-11 3 -13 14 q-1 8 3 12 q4 -13 12 -19 z" fill="var(--accent)" fill-opacity="0.42"></path>
+      <path d="M31 66 q-6 10 -4 21 q6 4 10 -1 q1 -12 3 -19 z" fill="var(--accent)" fill-opacity="0.42"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="-5 32 84; -55 32 84; -5 32 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M27 88 q-3 13 1 24 q6 2 8 -3 q-1 -12 -1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="30" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+      
+    <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="140 80 48; 18 80 48; 140 80 48"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+      <path d="M80 45 q11 3 13 14 q1 8 -3 12 q-4 -13 -12 -19 z" fill="var(--accent)" fill-opacity="0.42"></path>
+      <path d="M89 66 q6 10 4 21 q-6 4 -10 -1 q-1 -12 -3 -19 z" fill="var(--accent)" fill-opacity="0.42"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="5 88 84; 55 88 84; 5 88 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M93 88 q3 13 -1 24 q-6 2 -8 -3 q1 -12 1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="90" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+    </g>
+    <path d="M49 97 q11 4 22 0 l2 16 q-13 5 -26 0 z" fill="#2b3547"/>
+    
+    
+    <g>
+      <path d="M48 114 q-6 26 -1 44 q8 4 13 -1 q2 -23 2 -43 q-8 3 -14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="53" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M47 169 q-2 23 1 38 q7 3 11 -1 q-1 -20 0 -37 z" fill="#2b3547"/>
+        <path d="M47 205 q6 3 12 0 l1 8 q-7 3 -14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    
+    <g>
+      <path d="M72 114 q6 26 1 44 q-8 4 -13 -1 q-2 -23 -2 -43 q8 3 14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="67" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M73 169 q2 23 -1 38 q-7 3 -11 -1 q1 -20 0 -37 z" fill="#2b3547"/>
+        <path d="M73 205 q-6 3 -12 0 l-1 8 q7 3 14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    <text x="60" y="231" text-anchor="middle" font-size="9" fill="#8b97a8" stroke="none">Frente</text>
+  </g>
+    
+  <g transform="translate(128,0)" stroke="rgba(10,14,21,0.35)" stroke-width="0.7" stroke-linejoin="round">
+    <g>
+      <ellipse cx="60" cy="19" rx="11" ry="13.5" fill="#2b3547"/>
+      <path d="M54.5 30 h11 v7.5 q-5.5 2.5 -11 0 z" fill="#2b3547"/>
+      <path d="M60 36 q-14 2 -21 10 q-2 12 4 22 q8 5 17 5 q9 0 17 -5 q6 -10 4 -22 q-7 -8 -21 -10 z" fill="#3d4b63"></path>
+      <path d="M42 62 q-3 18 4 30 q8 3 13 -2 q-2 -16 -2 -29 q-8 3 -15 1 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+         <path d="M78 62 q3 18 -4 30 q-8 3 -13 -2 q2 -16 2 -29 q8 3 15 1 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+         <path d="M51 92 q9 3 18 0 l2 13 q-11 4 -22 0 z" fill="#3d4b63"></path>
+      
+    <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="-140 40 48; -18 40 48; -140 40 48"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+      <path d="M40 45 q-11 3 -13 14 q-1 8 3 12 q4 -13 12 -19 z" fill="var(--accent)" fill-opacity="0.42"></path>
+      <path d="M31 66 q-6 10 -4 21 q6 4 10 -1 q1 -12 3 -19 z" fill="#3d4b63"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="-5 32 84; -55 32 84; -5 32 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M27 88 q-3 13 1 24 q6 2 8 -3 q-1 -12 -1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="30" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+      
+    <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="140 80 48; 18 80 48; 140 80 48"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+      <path d="M80 45 q11 3 13 14 q1 8 -3 12 q-4 -13 -12 -19 z" fill="var(--accent)" fill-opacity="0.42"></path>
+      <path d="M89 66 q6 10 4 21 q-6 4 -10 -1 q-1 -12 -3 -19 z" fill="#3d4b63"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="5 88 84; 55 88 84; 5 88 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M93 88 q3 13 -1 24 q-6 2 -8 -3 q1 -12 1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="90" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+    </g>
+    <path d="M49 97 q11 4 22 0 l2 16 q-13 5 -26 0 z" fill="#2b3547"/>
+    <path d="M59 105 q-12 0 -13 10 q0 9 7 11 q6 1 6 -6 z" fill="#3d4b63"></path>
+         <path d="M61 105 q12 0 13 10 q0 9 -7 11 q-6 1 -6 -6 z" fill="#3d4b63"></path>
+    
+    <g>
+      <path d="M48 114 q-6 26 -1 44 q8 4 13 -1 q2 -23 2 -43 q-8 3 -14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="53" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M47 169 q-3 18 0 30 q7 3 11 -1 q-1 -16 0 -29 z" fill="#3d4b63"></path>
+        <path d="M47 205 q6 3 12 0 l1 8 q-7 3 -14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    
+    <g>
+      <path d="M72 114 q6 26 1 44 q-8 4 -13 -1 q-2 -23 -2 -43 q8 3 14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="67" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M73 169 q3 18 0 30 q-7 3 -11 -1 q1 -16 0 -29 z" fill="#3d4b63"></path>
+        <path d="M73 205 q-6 3 -12 0 l-1 8 q7 3 14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    <text x="60" y="231" text-anchor="middle" font-size="9" fill="#8b97a8" stroke="none">Espalda</text>
+  </g>
+  </svg><div class="small mt-1">
+      <span style="color:var(--accent)">●</span> <b>Dorsal</b>
+      <span class="text-muted"> · <span style="color:var(--accent);opacity:.45">●</span> Bíceps, Hombros</span>
+    </div></section>
+<section><h2>Remo sentado</h2><p class="sub">Polea baja, tirar al abdomen, codos pegados al cuerpo.</p><svg viewBox="0 0 250 238" class="body-map" xmlns="http://www.w3.org/2000/svg"
+    role="img" aria-label="Movimiento y músculos que trabaja este ejercicio">
+    <rect x="0" y="0" width="250" height="238" rx="16" fill="rgba(255,255,255,0.035)"/>
+    
+  <g transform="translate(2,0)" stroke="rgba(10,14,21,0.35)" stroke-width="0.7" stroke-linejoin="round">
+    <g>
+      <ellipse cx="60" cy="19" rx="11" ry="13.5" fill="#2b3547"/>
+      <path d="M54.5 30 h11 v7.5 q-5.5 2.5 -11 0 z" fill="#2b3547"/>
+      <path d="M49 38 q11 -4 22 0 l9 8 q-20 -5 -40 0 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+      <path d="M59 47 q-11 -1 -18 5 q-3 8 2 14 q9 4 16 -2 z" fill="#3d4b63"></path>
+         <path d="M61 47 q11 -1 18 5 q3 8 -2 14 q-9 4 -16 -2 z" fill="#3d4b63"></path>
+         <path d="M42 68 q-3 16 2 30 l7 -4 q-4 -14 -3 -26 z" fill="#3d4b63"></path>
+         <path d="M78 68 q3 16 -2 30 l-7 -4 q4 -14 3 -26 z" fill="#3d4b63"></path>
+         <path d="M51 67 q9 -3 18 0 q2 17 -1 31 q-8 4 -16 0 q-3 -14 -1 -31 z" fill="#3d4b63"></path>
+      
+    <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="-15 40 48; -5 40 48; -15 40 48"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+      <path d="M40 45 q-11 3 -13 14 q-1 8 3 12 q4 -13 12 -19 z" fill="#3d4b63"></path>
+      <path d="M31 66 q-6 10 -4 21 q6 4 10 -1 q1 -12 3 -19 z" fill="var(--accent)" fill-opacity="0.42"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="-10 32 84; -72 32 84; -10 32 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M27 88 q-3 13 1 24 q6 2 8 -3 q-1 -12 -1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="30" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+      
+    <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="15 80 48; 5 80 48; 15 80 48"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+      <path d="M80 45 q11 3 13 14 q1 8 -3 12 q-4 -13 -12 -19 z" fill="#3d4b63"></path>
+      <path d="M89 66 q6 10 4 21 q-6 4 -10 -1 q-1 -12 -3 -19 z" fill="var(--accent)" fill-opacity="0.42"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="10 88 84; 72 88 84; 10 88 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M93 88 q3 13 -1 24 q-6 2 -8 -3 q1 -12 1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="90" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+    </g>
+    <path d="M49 97 q11 4 22 0 l2 16 q-13 5 -26 0 z" fill="#2b3547"/>
+    
+    
+    <g>
+      <path d="M48 114 q-6 26 -1 44 q8 4 13 -1 q2 -23 2 -43 q-8 3 -14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="53" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M47 169 q-2 23 1 38 q7 3 11 -1 q-1 -20 0 -37 z" fill="#2b3547"/>
+        <path d="M47 205 q6 3 12 0 l1 8 q-7 3 -14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    
+    <g>
+      <path d="M72 114 q6 26 1 44 q-8 4 -13 -1 q-2 -23 -2 -43 q8 3 14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="67" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M73 169 q2 23 -1 38 q-7 3 -11 -1 q1 -20 0 -37 z" fill="#2b3547"/>
+        <path d="M73 205 q-6 3 -12 0 l-1 8 q7 3 14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    <text x="60" y="231" text-anchor="middle" font-size="9" fill="#8b97a8" stroke="none">Frente</text>
+  </g>
+    
+  <g transform="translate(128,0)" stroke="rgba(10,14,21,0.35)" stroke-width="0.7" stroke-linejoin="round">
+    <g>
+      <ellipse cx="60" cy="19" rx="11" ry="13.5" fill="#2b3547"/>
+      <path d="M54.5 30 h11 v7.5 q-5.5 2.5 -11 0 z" fill="#2b3547"/>
+      <path d="M60 36 q-14 2 -21 10 q-2 12 4 22 q8 5 17 5 q9 0 17 -5 q6 -10 4 -22 q-7 -8 -21 -10 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+      <path d="M42 62 q-3 18 4 30 q8 3 13 -2 q-2 -16 -2 -29 q-8 3 -15 1 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+         <path d="M78 62 q3 18 -4 30 q-8 3 -13 -2 q2 -16 2 -29 q8 3 15 1 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+         <path d="M51 92 q9 3 18 0 l2 13 q-11 4 -22 0 z" fill="var(--accent)" fill-opacity="0.42"></path>
+      
+    <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="-15 40 48; -5 40 48; -15 40 48"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+      <path d="M40 45 q-11 3 -13 14 q-1 8 3 12 q4 -13 12 -19 z" fill="#3d4b63"></path>
+      <path d="M31 66 q-6 10 -4 21 q6 4 10 -1 q1 -12 3 -19 z" fill="#3d4b63"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="-10 32 84; -72 32 84; -10 32 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M27 88 q-3 13 1 24 q6 2 8 -3 q-1 -12 -1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="30" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+      
+    <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="15 80 48; 5 80 48; 15 80 48"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+      <path d="M80 45 q11 3 13 14 q1 8 -3 12 q-4 -13 -12 -19 z" fill="#3d4b63"></path>
+      <path d="M89 66 q6 10 4 21 q-6 4 -10 -1 q-1 -12 -3 -19 z" fill="#3d4b63"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="10 88 84; 72 88 84; 10 88 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M93 88 q3 13 -1 24 q-6 2 -8 -3 q1 -12 1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="90" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+    </g>
+    <path d="M49 97 q11 4 22 0 l2 16 q-13 5 -26 0 z" fill="#2b3547"/>
+    <path d="M59 105 q-12 0 -13 10 q0 9 7 11 q6 1 6 -6 z" fill="#3d4b63"></path>
+         <path d="M61 105 q12 0 13 10 q0 9 -7 11 q-6 1 -6 -6 z" fill="#3d4b63"></path>
+    
+    <g>
+      <path d="M48 114 q-6 26 -1 44 q8 4 13 -1 q2 -23 2 -43 q-8 3 -14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="53" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M47 169 q-3 18 0 30 q7 3 11 -1 q-1 -16 0 -29 z" fill="#3d4b63"></path>
+        <path d="M47 205 q6 3 12 0 l1 8 q-7 3 -14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    
+    <g>
+      <path d="M72 114 q6 26 1 44 q-8 4 -13 -1 q-2 -23 -2 -43 q8 3 14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="67" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M73 169 q3 18 0 30 q-7 3 -11 -1 q1 -16 0 -29 z" fill="#3d4b63"></path>
+        <path d="M73 205 q-6 3 -12 0 l-1 8 q7 3 14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    <text x="60" y="231" text-anchor="middle" font-size="9" fill="#8b97a8" stroke="none">Espalda</text>
+  </g>
+  </svg><div class="small mt-1">
+      <span style="color:var(--accent)">●</span> <b>Dorsal, Trapecio</b>
+      <span class="text-muted"> · <span style="color:var(--accent);opacity:.45">●</span> Bíceps, Lumbar</span>
+    </div></section>
+<section><h2>Remo al mentón</h2><p class="sub">Polea baja, tirar a la barbilla, codos al techo. OJO con el hombro: sin dolor.</p><svg viewBox="0 0 250 238" class="body-map" xmlns="http://www.w3.org/2000/svg"
+    role="img" aria-label="Movimiento y músculos que trabaja este ejercicio">
+    <rect x="0" y="0" width="250" height="238" rx="16" fill="rgba(255,255,255,0.035)"/>
+    
+  <g transform="translate(2,0)" stroke="rgba(10,14,21,0.35)" stroke-width="0.7" stroke-linejoin="round">
+    <g>
+      <ellipse cx="60" cy="19" rx="11" ry="13.5" fill="#2b3547"/>
+      <path d="M54.5 30 h11 v7.5 q-5.5 2.5 -11 0 z" fill="#2b3547"/>
+      <path d="M49 38 q11 -4 22 0 l9 8 q-20 -5 -40 0 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+      <path d="M59 47 q-11 -1 -18 5 q-3 8 2 14 q9 4 16 -2 z" fill="#3d4b63"></path>
+         <path d="M61 47 q11 -1 18 5 q3 8 -2 14 q-9 4 -16 -2 z" fill="#3d4b63"></path>
+         <path d="M42 68 q-3 16 2 30 l7 -4 q-4 -14 -3 -26 z" fill="#3d4b63"></path>
+         <path d="M78 68 q3 16 -2 30 l-7 -4 q4 -14 3 -26 z" fill="#3d4b63"></path>
+         <path d="M51 67 q9 -3 18 0 q2 17 -1 31 q-8 4 -16 0 q-3 -14 -1 -31 z" fill="#3d4b63"></path>
+      
+    <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="-5 40 48; -52 40 48; -5 40 48"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+      <path d="M40 45 q-11 3 -13 14 q-1 8 3 12 q4 -13 12 -19 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+      <path d="M31 66 q-6 10 -4 21 q6 4 10 -1 q1 -12 3 -19 z" fill="var(--accent)" fill-opacity="0.42"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="0 32 84; -85 32 84; 0 32 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M27 88 q-3 13 1 24 q6 2 8 -3 q-1 -12 -1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="30" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+      
+    <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="5 80 48; 52 80 48; 5 80 48"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+      <path d="M80 45 q11 3 13 14 q1 8 -3 12 q-4 -13 -12 -19 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+      <path d="M89 66 q6 10 4 21 q-6 4 -10 -1 q-1 -12 -3 -19 z" fill="var(--accent)" fill-opacity="0.42"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="0 88 84; 85 88 84; 0 88 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M93 88 q3 13 -1 24 q-6 2 -8 -3 q1 -12 1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="90" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+    </g>
+    <path d="M49 97 q11 4 22 0 l2 16 q-13 5 -26 0 z" fill="#2b3547"/>
+    
+    
+    <g>
+      <path d="M48 114 q-6 26 -1 44 q8 4 13 -1 q2 -23 2 -43 q-8 3 -14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="53" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M47 169 q-2 23 1 38 q7 3 11 -1 q-1 -20 0 -37 z" fill="#2b3547"/>
+        <path d="M47 205 q6 3 12 0 l1 8 q-7 3 -14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    
+    <g>
+      <path d="M72 114 q6 26 1 44 q-8 4 -13 -1 q-2 -23 -2 -43 q8 3 14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="67" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M73 169 q2 23 -1 38 q-7 3 -11 -1 q1 -20 0 -37 z" fill="#2b3547"/>
+        <path d="M73 205 q-6 3 -12 0 l-1 8 q7 3 14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    <text x="60" y="231" text-anchor="middle" font-size="9" fill="#8b97a8" stroke="none">Frente</text>
+  </g>
+    
+  <g transform="translate(128,0)" stroke="rgba(10,14,21,0.35)" stroke-width="0.7" stroke-linejoin="round">
+    <g>
+      <ellipse cx="60" cy="19" rx="11" ry="13.5" fill="#2b3547"/>
+      <path d="M54.5 30 h11 v7.5 q-5.5 2.5 -11 0 z" fill="#2b3547"/>
+      <path d="M60 36 q-14 2 -21 10 q-2 12 4 22 q8 5 17 5 q9 0 17 -5 q6 -10 4 -22 q-7 -8 -21 -10 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+      <path d="M42 62 q-3 18 4 30 q8 3 13 -2 q-2 -16 -2 -29 q-8 3 -15 1 z" fill="#3d4b63"></path>
+         <path d="M78 62 q3 18 -4 30 q-8 3 -13 -2 q2 -16 2 -29 q8 3 15 1 z" fill="#3d4b63"></path>
+         <path d="M51 92 q9 3 18 0 l2 13 q-11 4 -22 0 z" fill="#3d4b63"></path>
+      
+    <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="-5 40 48; -52 40 48; -5 40 48"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+      <path d="M40 45 q-11 3 -13 14 q-1 8 3 12 q4 -13 12 -19 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+      <path d="M31 66 q-6 10 -4 21 q6 4 10 -1 q1 -12 3 -19 z" fill="#3d4b63"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="0 32 84; -85 32 84; 0 32 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M27 88 q-3 13 1 24 q6 2 8 -3 q-1 -12 -1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="30" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+      
+    <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="5 80 48; 52 80 48; 5 80 48"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+      <path d="M80 45 q11 3 13 14 q1 8 -3 12 q-4 -13 -12 -19 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+      <path d="M89 66 q6 10 4 21 q-6 4 -10 -1 q-1 -12 -3 -19 z" fill="#3d4b63"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="0 88 84; 85 88 84; 0 88 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M93 88 q3 13 -1 24 q-6 2 -8 -3 q1 -12 1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="90" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+    </g>
+    <path d="M49 97 q11 4 22 0 l2 16 q-13 5 -26 0 z" fill="#2b3547"/>
+    <path d="M59 105 q-12 0 -13 10 q0 9 7 11 q6 1 6 -6 z" fill="#3d4b63"></path>
+         <path d="M61 105 q12 0 13 10 q0 9 -7 11 q-6 1 -6 -6 z" fill="#3d4b63"></path>
+    
+    <g>
+      <path d="M48 114 q-6 26 -1 44 q8 4 13 -1 q2 -23 2 -43 q-8 3 -14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="53" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M47 169 q-3 18 0 30 q7 3 11 -1 q-1 -16 0 -29 z" fill="#3d4b63"></path>
+        <path d="M47 205 q6 3 12 0 l1 8 q-7 3 -14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    
+    <g>
+      <path d="M72 114 q6 26 1 44 q-8 4 -13 -1 q-2 -23 -2 -43 q8 3 14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="67" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M73 169 q3 18 0 30 q-7 3 -11 -1 q1 -16 0 -29 z" fill="#3d4b63"></path>
+        <path d="M73 205 q-6 3 -12 0 l-1 8 q7 3 14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    <text x="60" y="231" text-anchor="middle" font-size="9" fill="#8b97a8" stroke="none">Espalda</text>
+  </g>
+  </svg><div class="small mt-1">
+      <span style="color:var(--accent)">●</span> <b>Hombros, Trapecio</b>
+      <span class="text-muted"> · <span style="color:var(--accent);opacity:.45">●</span> Bíceps</span>
+    </div></section>
+<section><h2>Curl bíceps</h2><p class="sub">Polea baja, palmas arriba, mover solo los antebrazos.</p><svg viewBox="0 0 250 238" class="body-map" xmlns="http://www.w3.org/2000/svg"
+    role="img" aria-label="Movimiento y músculos que trabaja este ejercicio">
+    <rect x="0" y="0" width="250" height="238" rx="16" fill="rgba(255,255,255,0.035)"/>
+    
+  <g transform="translate(2,0)" stroke="rgba(10,14,21,0.35)" stroke-width="0.7" stroke-linejoin="round">
+    <g>
+      <ellipse cx="60" cy="19" rx="11" ry="13.5" fill="#2b3547"/>
+      <path d="M54.5 30 h11 v7.5 q-5.5 2.5 -11 0 z" fill="#2b3547"/>
+      <path d="M49 38 q11 -4 22 0 l9 8 q-20 -5 -40 0 z" fill="#3d4b63"></path>
+      <path d="M59 47 q-11 -1 -18 5 q-3 8 2 14 q9 4 16 -2 z" fill="#3d4b63"></path>
+         <path d="M61 47 q11 -1 18 5 q3 8 -2 14 q-9 4 -16 -2 z" fill="#3d4b63"></path>
+         <path d="M42 68 q-3 16 2 30 l7 -4 q-4 -14 -3 -26 z" fill="#3d4b63"></path>
+         <path d="M78 68 q3 16 -2 30 l-7 -4 q4 -14 3 -26 z" fill="#3d4b63"></path>
+         <path d="M51 67 q9 -3 18 0 q2 17 -1 31 q-8 4 -16 0 q-3 -14 -1 -31 z" fill="#3d4b63"></path>
+      
+    <g>
+      <path d="M40 45 q-11 3 -13 14 q-1 8 3 12 q4 -13 12 -19 z" fill="#3d4b63"></path>
+      <path d="M31 66 q-6 10 -4 21 q6 4 10 -1 q1 -12 3 -19 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="0 32 84; -125 32 84; 0 32 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M27 88 q-3 13 1 24 q6 2 8 -3 q-1 -12 -1 -20 z" fill="var(--accent)" fill-opacity="0.42"></path>
+        <ellipse cx="30" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+      
+    <g>
+      <path d="M80 45 q11 3 13 14 q1 8 -3 12 q-4 -13 -12 -19 z" fill="#3d4b63"></path>
+      <path d="M89 66 q6 10 4 21 q-6 4 -10 -1 q-1 -12 -3 -19 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="0 88 84; 125 88 84; 0 88 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M93 88 q3 13 -1 24 q-6 2 -8 -3 q1 -12 1 -20 z" fill="var(--accent)" fill-opacity="0.42"></path>
+        <ellipse cx="90" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+    </g>
+    <path d="M49 97 q11 4 22 0 l2 16 q-13 5 -26 0 z" fill="#2b3547"/>
+    
+    
+    <g>
+      <path d="M48 114 q-6 26 -1 44 q8 4 13 -1 q2 -23 2 -43 q-8 3 -14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="53" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M47 169 q-2 23 1 38 q7 3 11 -1 q-1 -20 0 -37 z" fill="#2b3547"/>
+        <path d="M47 205 q6 3 12 0 l1 8 q-7 3 -14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    
+    <g>
+      <path d="M72 114 q6 26 1 44 q-8 4 -13 -1 q-2 -23 -2 -43 q8 3 14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="67" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M73 169 q2 23 -1 38 q-7 3 -11 -1 q1 -20 0 -37 z" fill="#2b3547"/>
+        <path d="M73 205 q-6 3 -12 0 l-1 8 q7 3 14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    <text x="60" y="231" text-anchor="middle" font-size="9" fill="#8b97a8" stroke="none">Frente</text>
+  </g>
+    
+  <g transform="translate(128,0)" stroke="rgba(10,14,21,0.35)" stroke-width="0.7" stroke-linejoin="round">
+    <g>
+      <ellipse cx="60" cy="19" rx="11" ry="13.5" fill="#2b3547"/>
+      <path d="M54.5 30 h11 v7.5 q-5.5 2.5 -11 0 z" fill="#2b3547"/>
+      <path d="M60 36 q-14 2 -21 10 q-2 12 4 22 q8 5 17 5 q9 0 17 -5 q6 -10 4 -22 q-7 -8 -21 -10 z" fill="#3d4b63"></path>
+      <path d="M42 62 q-3 18 4 30 q8 3 13 -2 q-2 -16 -2 -29 q-8 3 -15 1 z" fill="#3d4b63"></path>
+         <path d="M78 62 q3 18 -4 30 q-8 3 -13 -2 q2 -16 2 -29 q8 3 15 1 z" fill="#3d4b63"></path>
+         <path d="M51 92 q9 3 18 0 l2 13 q-11 4 -22 0 z" fill="#3d4b63"></path>
+      
+    <g>
+      <path d="M40 45 q-11 3 -13 14 q-1 8 3 12 q4 -13 12 -19 z" fill="#3d4b63"></path>
+      <path d="M31 66 q-6 10 -4 21 q6 4 10 -1 q1 -12 3 -19 z" fill="#3d4b63"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="0 32 84; -125 32 84; 0 32 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M27 88 q-3 13 1 24 q6 2 8 -3 q-1 -12 -1 -20 z" fill="var(--accent)" fill-opacity="0.42"></path>
+        <ellipse cx="30" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+      
+    <g>
+      <path d="M80 45 q11 3 13 14 q1 8 -3 12 q-4 -13 -12 -19 z" fill="#3d4b63"></path>
+      <path d="M89 66 q6 10 4 21 q-6 4 -10 -1 q-1 -12 -3 -19 z" fill="#3d4b63"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="0 88 84; 125 88 84; 0 88 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M93 88 q3 13 -1 24 q-6 2 -8 -3 q1 -12 1 -20 z" fill="var(--accent)" fill-opacity="0.42"></path>
+        <ellipse cx="90" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+    </g>
+    <path d="M49 97 q11 4 22 0 l2 16 q-13 5 -26 0 z" fill="#2b3547"/>
+    <path d="M59 105 q-12 0 -13 10 q0 9 7 11 q6 1 6 -6 z" fill="#3d4b63"></path>
+         <path d="M61 105 q12 0 13 10 q0 9 -7 11 q-6 1 -6 -6 z" fill="#3d4b63"></path>
+    
+    <g>
+      <path d="M48 114 q-6 26 -1 44 q8 4 13 -1 q2 -23 2 -43 q-8 3 -14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="53" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M47 169 q-3 18 0 30 q7 3 11 -1 q-1 -16 0 -29 z" fill="#3d4b63"></path>
+        <path d="M47 205 q6 3 12 0 l1 8 q-7 3 -14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    
+    <g>
+      <path d="M72 114 q6 26 1 44 q-8 4 -13 -1 q-2 -23 -2 -43 q8 3 14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="67" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M73 169 q3 18 0 30 q-7 3 -11 -1 q1 -16 0 -29 z" fill="#3d4b63"></path>
+        <path d="M73 205 q-6 3 -12 0 l-1 8 q7 3 14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    <text x="60" y="231" text-anchor="middle" font-size="9" fill="#8b97a8" stroke="none">Espalda</text>
+  </g>
+  </svg><div class="small mt-1">
+      <span style="color:var(--accent)">●</span> <b>Bíceps</b>
+      <span class="text-muted"> · <span style="color:var(--accent);opacity:.45">●</span> Antebrazos</span>
+    </div></section>
+<section><h2>Tríceps (empuje polea alta)</h2><p class="sub">Barra corta arriba, codos fijos al costado, extender.</p><svg viewBox="0 0 250 238" class="body-map" xmlns="http://www.w3.org/2000/svg"
+    role="img" aria-label="Movimiento y músculos que trabaja este ejercicio">
+    <rect x="0" y="0" width="250" height="238" rx="16" fill="rgba(255,255,255,0.035)"/>
+    
+  <g transform="translate(2,0)" stroke="rgba(10,14,21,0.35)" stroke-width="0.7" stroke-linejoin="round">
+    <g>
+      <ellipse cx="60" cy="19" rx="11" ry="13.5" fill="#2b3547"/>
+      <path d="M54.5 30 h11 v7.5 q-5.5 2.5 -11 0 z" fill="#2b3547"/>
+      <path d="M49 38 q11 -4 22 0 l9 8 q-20 -5 -40 0 z" fill="#3d4b63"></path>
+      <path d="M59 47 q-11 -1 -18 5 q-3 8 2 14 q9 4 16 -2 z" fill="#3d4b63"></path>
+         <path d="M61 47 q11 -1 18 5 q3 8 -2 14 q-9 4 -16 -2 z" fill="#3d4b63"></path>
+         <path d="M42 68 q-3 16 2 30 l7 -4 q-4 -14 -3 -26 z" fill="#3d4b63"></path>
+         <path d="M78 68 q3 16 -2 30 l-7 -4 q4 -14 3 -26 z" fill="#3d4b63"></path>
+         <path d="M51 67 q9 -3 18 0 q2 17 -1 31 q-8 4 -16 0 q-3 -14 -1 -31 z" fill="#3d4b63"></path>
+      
+    <g>
+      <path d="M40 45 q-11 3 -13 14 q-1 8 3 12 q4 -13 12 -19 z" fill="#3d4b63"></path>
+      <path d="M31 66 q-6 10 -4 21 q6 4 10 -1 q1 -12 3 -19 z" fill="#3d4b63"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="-100 32 84; -8 32 84; -100 32 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M27 88 q-3 13 1 24 q6 2 8 -3 q-1 -12 -1 -20 z" fill="var(--accent)" fill-opacity="0.42"></path>
+        <ellipse cx="30" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+      
+    <g>
+      <path d="M80 45 q11 3 13 14 q1 8 -3 12 q-4 -13 -12 -19 z" fill="#3d4b63"></path>
+      <path d="M89 66 q6 10 4 21 q-6 4 -10 -1 q-1 -12 -3 -19 z" fill="#3d4b63"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="100 88 84; 8 88 84; 100 88 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M93 88 q3 13 -1 24 q-6 2 -8 -3 q1 -12 1 -20 z" fill="var(--accent)" fill-opacity="0.42"></path>
+        <ellipse cx="90" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+    </g>
+    <path d="M49 97 q11 4 22 0 l2 16 q-13 5 -26 0 z" fill="#2b3547"/>
+    
+    
+    <g>
+      <path d="M48 114 q-6 26 -1 44 q8 4 13 -1 q2 -23 2 -43 q-8 3 -14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="53" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M47 169 q-2 23 1 38 q7 3 11 -1 q-1 -20 0 -37 z" fill="#2b3547"/>
+        <path d="M47 205 q6 3 12 0 l1 8 q-7 3 -14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    
+    <g>
+      <path d="M72 114 q6 26 1 44 q-8 4 -13 -1 q-2 -23 -2 -43 q8 3 14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="67" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M73 169 q2 23 -1 38 q-7 3 -11 -1 q1 -20 0 -37 z" fill="#2b3547"/>
+        <path d="M73 205 q-6 3 -12 0 l-1 8 q7 3 14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    <text x="60" y="231" text-anchor="middle" font-size="9" fill="#8b97a8" stroke="none">Frente</text>
+  </g>
+    
+  <g transform="translate(128,0)" stroke="rgba(10,14,21,0.35)" stroke-width="0.7" stroke-linejoin="round">
+    <g>
+      <ellipse cx="60" cy="19" rx="11" ry="13.5" fill="#2b3547"/>
+      <path d="M54.5 30 h11 v7.5 q-5.5 2.5 -11 0 z" fill="#2b3547"/>
+      <path d="M60 36 q-14 2 -21 10 q-2 12 4 22 q8 5 17 5 q9 0 17 -5 q6 -10 4 -22 q-7 -8 -21 -10 z" fill="#3d4b63"></path>
+      <path d="M42 62 q-3 18 4 30 q8 3 13 -2 q-2 -16 -2 -29 q-8 3 -15 1 z" fill="#3d4b63"></path>
+         <path d="M78 62 q3 18 -4 30 q-8 3 -13 -2 q2 -16 2 -29 q8 3 15 1 z" fill="#3d4b63"></path>
+         <path d="M51 92 q9 3 18 0 l2 13 q-11 4 -22 0 z" fill="#3d4b63"></path>
+      
+    <g>
+      <path d="M40 45 q-11 3 -13 14 q-1 8 3 12 q4 -13 12 -19 z" fill="#3d4b63"></path>
+      <path d="M31 66 q-6 10 -4 21 q6 4 10 -1 q1 -12 3 -19 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="-100 32 84; -8 32 84; -100 32 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M27 88 q-3 13 1 24 q6 2 8 -3 q-1 -12 -1 -20 z" fill="var(--accent)" fill-opacity="0.42"></path>
+        <ellipse cx="30" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+      
+    <g>
+      <path d="M80 45 q11 3 13 14 q1 8 -3 12 q-4 -13 -12 -19 z" fill="#3d4b63"></path>
+      <path d="M89 66 q6 10 4 21 q-6 4 -10 -1 q-1 -12 -3 -19 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="100 88 84; 8 88 84; 100 88 84"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <path d="M93 88 q3 13 -1 24 q-6 2 -8 -3 q1 -12 1 -20 z" fill="var(--accent)" fill-opacity="0.42"></path>
+        <ellipse cx="90" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+    </g>
+    <path d="M49 97 q11 4 22 0 l2 16 q-13 5 -26 0 z" fill="#2b3547"/>
+    <path d="M59 105 q-12 0 -13 10 q0 9 7 11 q6 1 6 -6 z" fill="#3d4b63"></path>
+         <path d="M61 105 q12 0 13 10 q0 9 -7 11 q-6 1 -6 -6 z" fill="#3d4b63"></path>
+    
+    <g>
+      <path d="M48 114 q-6 26 -1 44 q8 4 13 -1 q2 -23 2 -43 q-8 3 -14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="53" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M47 169 q-3 18 0 30 q7 3 11 -1 q-1 -16 0 -29 z" fill="#3d4b63"></path>
+        <path d="M47 205 q6 3 12 0 l1 8 q-7 3 -14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    
+    <g>
+      <path d="M72 114 q6 26 1 44 q-8 4 -13 -1 q-2 -23 -2 -43 q8 3 14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="67" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M73 169 q3 18 0 30 q-7 3 -11 -1 q1 -16 0 -29 z" fill="#3d4b63"></path>
+        <path d="M73 205 q-6 3 -12 0 l-1 8 q7 3 14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    <text x="60" y="231" text-anchor="middle" font-size="9" fill="#8b97a8" stroke="none">Espalda</text>
+  </g>
+  </svg><div class="small mt-1">
+      <span style="color:var(--accent)">●</span> <b>Tríceps</b>
+      <span class="text-muted"> · <span style="color:var(--accent);opacity:.45">●</span> Antebrazos</span>
+    </div></section>
+<section><h2>Extensión de cuádriceps</h2><p class="sub">Sentado, extender la rodilla de forma controlada.</p><svg viewBox="0 0 250 238" class="body-map" xmlns="http://www.w3.org/2000/svg"
+    role="img" aria-label="Movimiento y músculos que trabaja este ejercicio">
+    <rect x="0" y="0" width="250" height="238" rx="16" fill="rgba(255,255,255,0.035)"/>
+    
+  <g transform="translate(2,0)" stroke="rgba(10,14,21,0.35)" stroke-width="0.7" stroke-linejoin="round">
+    <g>
+      <ellipse cx="60" cy="19" rx="11" ry="13.5" fill="#2b3547"/>
+      <path d="M54.5 30 h11 v7.5 q-5.5 2.5 -11 0 z" fill="#2b3547"/>
+      <path d="M49 38 q11 -4 22 0 l9 8 q-20 -5 -40 0 z" fill="#3d4b63"></path>
+      <path d="M59 47 q-11 -1 -18 5 q-3 8 2 14 q9 4 16 -2 z" fill="#3d4b63"></path>
+         <path d="M61 47 q11 -1 18 5 q3 8 -2 14 q-9 4 -16 -2 z" fill="#3d4b63"></path>
+         <path d="M42 68 q-3 16 2 30 l7 -4 q-4 -14 -3 -26 z" fill="#3d4b63"></path>
+         <path d="M78 68 q3 16 -2 30 l-7 -4 q4 -14 3 -26 z" fill="#3d4b63"></path>
+         <path d="M51 67 q9 -3 18 0 q2 17 -1 31 q-8 4 -16 0 q-3 -14 -1 -31 z" fill="#3d4b63"></path>
+      
+    <g>
+      <path d="M40 45 q-11 3 -13 14 q-1 8 3 12 q4 -13 12 -19 z" fill="#3d4b63"></path>
+      <path d="M31 66 q-6 10 -4 21 q6 4 10 -1 q1 -12 3 -19 z" fill="#3d4b63"></path>
+      <g>
+        <path d="M27 88 q-3 13 1 24 q6 2 8 -3 q-1 -12 -1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="30" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+      
+    <g>
+      <path d="M80 45 q11 3 13 14 q1 8 -3 12 q-4 -13 -12 -19 z" fill="#3d4b63"></path>
+      <path d="M89 66 q6 10 4 21 q-6 4 -10 -1 q-1 -12 -3 -19 z" fill="#3d4b63"></path>
+      <g>
+        <path d="M93 88 q3 13 -1 24 q-6 2 -8 -3 q1 -12 1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="90" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+    </g>
+    <path d="M49 97 q11 4 22 0 l2 16 q-13 5 -26 0 z" fill="#2b3547"/>
+    
+    
+    <g>
+      <path d="M48 114 q-6 26 -1 44 q8 4 13 -1 q2 -23 2 -43 q-8 3 -14 0 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="0 53 161; -22 53 161; 0 53 161"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <ellipse cx="53" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M47 169 q-2 23 1 38 q7 3 11 -1 q-1 -20 0 -37 z" fill="#2b3547"/>
+        <path d="M47 205 q6 3 12 0 l1 8 q-7 3 -14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    
+    <g>
+      <path d="M72 114 q6 26 1 44 q-8 4 -13 -1 q-2 -23 -2 -43 q8 3 14 0 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="0 67 161; 22 67 161; 0 67 161"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <ellipse cx="67" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M73 169 q2 23 -1 38 q-7 3 -11 -1 q1 -20 0 -37 z" fill="#2b3547"/>
+        <path d="M73 205 q-6 3 -12 0 l-1 8 q7 3 14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    <text x="60" y="231" text-anchor="middle" font-size="9" fill="#8b97a8" stroke="none">Frente</text>
+  </g>
+    
+  <g transform="translate(128,0)" stroke="rgba(10,14,21,0.35)" stroke-width="0.7" stroke-linejoin="round">
+    <g>
+      <ellipse cx="60" cy="19" rx="11" ry="13.5" fill="#2b3547"/>
+      <path d="M54.5 30 h11 v7.5 q-5.5 2.5 -11 0 z" fill="#2b3547"/>
+      <path d="M60 36 q-14 2 -21 10 q-2 12 4 22 q8 5 17 5 q9 0 17 -5 q6 -10 4 -22 q-7 -8 -21 -10 z" fill="#3d4b63"></path>
+      <path d="M42 62 q-3 18 4 30 q8 3 13 -2 q-2 -16 -2 -29 q-8 3 -15 1 z" fill="#3d4b63"></path>
+         <path d="M78 62 q3 18 -4 30 q-8 3 -13 -2 q2 -16 2 -29 q8 3 15 1 z" fill="#3d4b63"></path>
+         <path d="M51 92 q9 3 18 0 l2 13 q-11 4 -22 0 z" fill="#3d4b63"></path>
+      
+    <g>
+      <path d="M40 45 q-11 3 -13 14 q-1 8 3 12 q4 -13 12 -19 z" fill="#3d4b63"></path>
+      <path d="M31 66 q-6 10 -4 21 q6 4 10 -1 q1 -12 3 -19 z" fill="#3d4b63"></path>
+      <g>
+        <path d="M27 88 q-3 13 1 24 q6 2 8 -3 q-1 -12 -1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="30" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+      
+    <g>
+      <path d="M80 45 q11 3 13 14 q1 8 -3 12 q-4 -13 -12 -19 z" fill="#3d4b63"></path>
+      <path d="M89 66 q6 10 4 21 q-6 4 -10 -1 q-1 -12 -3 -19 z" fill="#3d4b63"></path>
+      <g>
+        <path d="M93 88 q3 13 -1 24 q-6 2 -8 -3 q1 -12 1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="90" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+    </g>
+    <path d="M49 97 q11 4 22 0 l2 16 q-13 5 -26 0 z" fill="#2b3547"/>
+    <path d="M59 105 q-12 0 -13 10 q0 9 7 11 q6 1 6 -6 z" fill="#3d4b63"></path>
+         <path d="M61 105 q12 0 13 10 q0 9 -7 11 q-6 1 -6 -6 z" fill="#3d4b63"></path>
+    
+    <g>
+      <path d="M48 114 q-6 26 -1 44 q8 4 13 -1 q2 -23 2 -43 q-8 3 -14 0 z" fill="#3d4b63"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="0 53 161; -22 53 161; 0 53 161"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <ellipse cx="53" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M47 169 q-3 18 0 30 q7 3 11 -1 q-1 -16 0 -29 z" fill="#3d4b63"></path>
+        <path d="M47 205 q6 3 12 0 l1 8 q-7 3 -14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    
+    <g>
+      <path d="M72 114 q6 26 1 44 q-8 4 -13 -1 q-2 -23 -2 -43 q8 3 14 0 z" fill="#3d4b63"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="0 67 161; 22 67 161; 0 67 161"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <ellipse cx="67" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M73 169 q3 18 0 30 q-7 3 -11 -1 q1 -16 0 -29 z" fill="#3d4b63"></path>
+        <path d="M73 205 q-6 3 -12 0 l-1 8 q7 3 14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    <text x="60" y="231" text-anchor="middle" font-size="9" fill="#8b97a8" stroke="none">Espalda</text>
+  </g>
+  </svg><div class="small mt-1">
+      <span style="color:var(--accent)">●</span> <b>Cuádriceps</b>
+      
+    </div></section>
+<section><h2>Curl femoral</h2><p class="sub">De pie, una pierna a la vez, flexionar llevando el talón al glúteo.</p><svg viewBox="0 0 250 238" class="body-map" xmlns="http://www.w3.org/2000/svg"
+    role="img" aria-label="Movimiento y músculos que trabaja este ejercicio">
+    <rect x="0" y="0" width="250" height="238" rx="16" fill="rgba(255,255,255,0.035)"/>
+    
+  <g transform="translate(2,0)" stroke="rgba(10,14,21,0.35)" stroke-width="0.7" stroke-linejoin="round">
+    <g>
+      <ellipse cx="60" cy="19" rx="11" ry="13.5" fill="#2b3547"/>
+      <path d="M54.5 30 h11 v7.5 q-5.5 2.5 -11 0 z" fill="#2b3547"/>
+      <path d="M49 38 q11 -4 22 0 l9 8 q-20 -5 -40 0 z" fill="#3d4b63"></path>
+      <path d="M59 47 q-11 -1 -18 5 q-3 8 2 14 q9 4 16 -2 z" fill="#3d4b63"></path>
+         <path d="M61 47 q11 -1 18 5 q3 8 -2 14 q-9 4 -16 -2 z" fill="#3d4b63"></path>
+         <path d="M42 68 q-3 16 2 30 l7 -4 q-4 -14 -3 -26 z" fill="#3d4b63"></path>
+         <path d="M78 68 q3 16 -2 30 l-7 -4 q4 -14 3 -26 z" fill="#3d4b63"></path>
+         <path d="M51 67 q9 -3 18 0 q2 17 -1 31 q-8 4 -16 0 q-3 -14 -1 -31 z" fill="#3d4b63"></path>
+      
+    <g>
+      <path d="M40 45 q-11 3 -13 14 q-1 8 3 12 q4 -13 12 -19 z" fill="#3d4b63"></path>
+      <path d="M31 66 q-6 10 -4 21 q6 4 10 -1 q1 -12 3 -19 z" fill="#3d4b63"></path>
+      <g>
+        <path d="M27 88 q-3 13 1 24 q6 2 8 -3 q-1 -12 -1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="30" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+      
+    <g>
+      <path d="M80 45 q11 3 13 14 q1 8 -3 12 q-4 -13 -12 -19 z" fill="#3d4b63"></path>
+      <path d="M89 66 q6 10 4 21 q-6 4 -10 -1 q-1 -12 -3 -19 z" fill="#3d4b63"></path>
+      <g>
+        <path d="M93 88 q3 13 -1 24 q-6 2 -8 -3 q1 -12 1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="90" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+    </g>
+    <path d="M49 97 q11 4 22 0 l2 16 q-13 5 -26 0 z" fill="#2b3547"/>
+    
+    
+    <g>
+      <path d="M48 114 q-6 26 -1 44 q8 4 13 -1 q2 -23 2 -43 q-8 3 -14 0 z" fill="#3d4b63"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="0 53 161; 26 53 161; 0 53 161"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <ellipse cx="53" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M47 169 q-2 23 1 38 q7 3 11 -1 q-1 -20 0 -37 z" fill="#2b3547"/>
+        <path d="M47 205 q6 3 12 0 l1 8 q-7 3 -14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    
+    <g>
+      <path d="M72 114 q6 26 1 44 q-8 4 -13 -1 q-2 -23 -2 -43 q8 3 14 0 z" fill="#3d4b63"></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="0 67 161; -26 67 161; 0 67 161"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <ellipse cx="67" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M73 169 q2 23 -1 38 q-7 3 -11 -1 q1 -20 0 -37 z" fill="#2b3547"/>
+        <path d="M73 205 q-6 3 -12 0 l-1 8 q7 3 14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    <text x="60" y="231" text-anchor="middle" font-size="9" fill="#8b97a8" stroke="none">Frente</text>
+  </g>
+    
+  <g transform="translate(128,0)" stroke="rgba(10,14,21,0.35)" stroke-width="0.7" stroke-linejoin="round">
+    <g>
+      <ellipse cx="60" cy="19" rx="11" ry="13.5" fill="#2b3547"/>
+      <path d="M54.5 30 h11 v7.5 q-5.5 2.5 -11 0 z" fill="#2b3547"/>
+      <path d="M60 36 q-14 2 -21 10 q-2 12 4 22 q8 5 17 5 q9 0 17 -5 q6 -10 4 -22 q-7 -8 -21 -10 z" fill="#3d4b63"></path>
+      <path d="M42 62 q-3 18 4 30 q8 3 13 -2 q-2 -16 -2 -29 q-8 3 -15 1 z" fill="#3d4b63"></path>
+         <path d="M78 62 q3 18 -4 30 q-8 3 -13 -2 q2 -16 2 -29 q8 3 15 1 z" fill="#3d4b63"></path>
+         <path d="M51 92 q9 3 18 0 l2 13 q-11 4 -22 0 z" fill="#3d4b63"></path>
+      
+    <g>
+      <path d="M40 45 q-11 3 -13 14 q-1 8 3 12 q4 -13 12 -19 z" fill="#3d4b63"></path>
+      <path d="M31 66 q-6 10 -4 21 q6 4 10 -1 q1 -12 3 -19 z" fill="#3d4b63"></path>
+      <g>
+        <path d="M27 88 q-3 13 1 24 q6 2 8 -3 q-1 -12 -1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="30" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+      
+    <g>
+      <path d="M80 45 q11 3 13 14 q1 8 -3 12 q-4 -13 -12 -19 z" fill="#3d4b63"></path>
+      <path d="M89 66 q6 10 4 21 q-6 4 -10 -1 q-1 -12 -3 -19 z" fill="#3d4b63"></path>
+      <g>
+        <path d="M93 88 q3 13 -1 24 q-6 2 -8 -3 q1 -12 1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="90" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+    </g>
+    <path d="M49 97 q11 4 22 0 l2 16 q-13 5 -26 0 z" fill="#2b3547"/>
+    <path d="M59 105 q-12 0 -13 10 q0 9 7 11 q6 1 6 -6 z" fill="var(--accent)" fill-opacity="0.42"></path>
+         <path d="M61 105 q12 0 13 10 q0 9 -7 11 q-6 1 -6 -6 z" fill="var(--accent)" fill-opacity="0.42"></path>
+    
+    <g>
+      <path d="M48 114 q-6 26 -1 44 q8 4 13 -1 q2 -23 2 -43 q-8 3 -14 0 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="0 53 161; 26 53 161; 0 53 161"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <ellipse cx="53" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M47 169 q-3 18 0 30 q7 3 11 -1 q-1 -16 0 -29 z" fill="var(--accent)" fill-opacity="0.42"></path>
+        <path d="M47 205 q6 3 12 0 l1 8 q-7 3 -14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    
+    <g>
+      <path d="M72 114 q6 26 1 44 q-8 4 -13 -1 q-2 -23 -2 -43 q8 3 14 0 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+      <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="0 67 161; -26 67 161; 0 67 161"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+        <ellipse cx="67" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M73 169 q3 18 0 30 q-7 3 -11 -1 q1 -16 0 -29 z" fill="var(--accent)" fill-opacity="0.42"></path>
+        <path d="M73 205 q-6 3 -12 0 l-1 8 q7 3 14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    <text x="60" y="231" text-anchor="middle" font-size="9" fill="#8b97a8" stroke="none">Espalda</text>
+  </g>
+  </svg><div class="small mt-1">
+      <span style="color:var(--accent)">●</span> <b>Femorales</b>
+      <span class="text-muted"> · <span style="color:var(--accent);opacity:.45">●</span> Glúteos, Gemelos</span>
+    </div></section>
+<section><h2>Abdominales</h2><p class="sub">Camilla inclinable, manos al pecho, sin tirón de cuello. Sube por nivel de inclinación.</p><svg viewBox="0 0 250 238" class="body-map" xmlns="http://www.w3.org/2000/svg"
+    role="img" aria-label="Movimiento y músculos que trabaja este ejercicio">
+    <rect x="0" y="0" width="250" height="238" rx="16" fill="rgba(255,255,255,0.035)"/>
+    
+  <g transform="translate(2,0)" stroke="rgba(10,14,21,0.35)" stroke-width="0.7" stroke-linejoin="round">
+    <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="0 60 108; -24 60 108; 0 60 108"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+      <ellipse cx="60" cy="19" rx="11" ry="13.5" fill="#2b3547"/>
+      <path d="M54.5 30 h11 v7.5 q-5.5 2.5 -11 0 z" fill="#2b3547"/>
+      <path d="M49 38 q11 -4 22 0 l9 8 q-20 -5 -40 0 z" fill="#3d4b63"></path>
+      <path d="M59 47 q-11 -1 -18 5 q-3 8 2 14 q9 4 16 -2 z" fill="#3d4b63"></path>
+         <path d="M61 47 q11 -1 18 5 q3 8 -2 14 q-9 4 -16 -2 z" fill="#3d4b63"></path>
+         <path d="M42 68 q-3 16 2 30 l7 -4 q-4 -14 -3 -26 z" fill="var(--accent)" fill-opacity="0.42"></path>
+         <path d="M78 68 q3 16 -2 30 l-7 -4 q4 -14 3 -26 z" fill="var(--accent)" fill-opacity="0.42"></path>
+         <path d="M51 67 q9 -3 18 0 q2 17 -1 31 q-8 4 -16 0 q-3 -14 -1 -31 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+      
+    <g>
+      <path d="M40 45 q-11 3 -13 14 q-1 8 3 12 q4 -13 12 -19 z" fill="#3d4b63"></path>
+      <path d="M31 66 q-6 10 -4 21 q6 4 10 -1 q1 -12 3 -19 z" fill="#3d4b63"></path>
+      <g>
+        <path d="M27 88 q-3 13 1 24 q6 2 8 -3 q-1 -12 -1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="30" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+      
+    <g>
+      <path d="M80 45 q11 3 13 14 q1 8 -3 12 q-4 -13 -12 -19 z" fill="#3d4b63"></path>
+      <path d="M89 66 q6 10 4 21 q-6 4 -10 -1 q-1 -12 -3 -19 z" fill="#3d4b63"></path>
+      <g>
+        <path d="M93 88 q3 13 -1 24 q-6 2 -8 -3 q1 -12 1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="90" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+    </g>
+    <path d="M49 97 q11 4 22 0 l2 16 q-13 5 -26 0 z" fill="#2b3547"/>
+    
+    
+    <g>
+      <path d="M48 114 q-6 26 -1 44 q8 4 13 -1 q2 -23 2 -43 q-8 3 -14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="53" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M47 169 q-2 23 1 38 q7 3 11 -1 q-1 -20 0 -37 z" fill="#2b3547"/>
+        <path d="M47 205 q6 3 12 0 l1 8 q-7 3 -14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    
+    <g>
+      <path d="M72 114 q6 26 1 44 q-8 4 -13 -1 q-2 -23 -2 -43 q8 3 14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="67" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M73 169 q2 23 -1 38 q-7 3 -11 -1 q1 -20 0 -37 z" fill="#2b3547"/>
+        <path d="M73 205 q-6 3 -12 0 l-1 8 q7 3 14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    <text x="60" y="231" text-anchor="middle" font-size="9" fill="#8b97a8" stroke="none">Frente</text>
+  </g>
+    
+  <g transform="translate(128,0)" stroke="rgba(10,14,21,0.35)" stroke-width="0.7" stroke-linejoin="round">
+    <g><animateTransform attributeName="transform" type="rotate" dur="2.6s"
+      repeatCount="indefinite" values="0 60 108; -24 60 108; 0 60 108"
+      keyTimes="0;0.5;1" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+      <ellipse cx="60" cy="19" rx="11" ry="13.5" fill="#2b3547"/>
+      <path d="M54.5 30 h11 v7.5 q-5.5 2.5 -11 0 z" fill="#2b3547"/>
+      <path d="M60 36 q-14 2 -21 10 q-2 12 4 22 q8 5 17 5 q9 0 17 -5 q6 -10 4 -22 q-7 -8 -21 -10 z" fill="#3d4b63"></path>
+      <path d="M42 62 q-3 18 4 30 q8 3 13 -2 q-2 -16 -2 -29 q-8 3 -15 1 z" fill="#3d4b63"></path>
+         <path d="M78 62 q3 18 -4 30 q-8 3 -13 -2 q2 -16 2 -29 q8 3 15 1 z" fill="#3d4b63"></path>
+         <path d="M51 92 q9 3 18 0 l2 13 q-11 4 -22 0 z" fill="#3d4b63"></path>
+      
+    <g>
+      <path d="M40 45 q-11 3 -13 14 q-1 8 3 12 q4 -13 12 -19 z" fill="#3d4b63"></path>
+      <path d="M31 66 q-6 10 -4 21 q6 4 10 -1 q1 -12 3 -19 z" fill="#3d4b63"></path>
+      <g>
+        <path d="M27 88 q-3 13 1 24 q6 2 8 -3 q-1 -12 -1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="30" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+      
+    <g>
+      <path d="M80 45 q11 3 13 14 q1 8 -3 12 q-4 -13 -12 -19 z" fill="#3d4b63"></path>
+      <path d="M89 66 q6 10 4 21 q-6 4 -10 -1 q-1 -12 -3 -19 z" fill="#3d4b63"></path>
+      <g>
+        <path d="M93 88 q3 13 -1 24 q-6 2 -8 -3 q1 -12 1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="90" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+    </g>
+    <path d="M49 97 q11 4 22 0 l2 16 q-13 5 -26 0 z" fill="#2b3547"/>
+    <path d="M59 105 q-12 0 -13 10 q0 9 7 11 q6 1 6 -6 z" fill="#3d4b63"></path>
+         <path d="M61 105 q12 0 13 10 q0 9 -7 11 q-6 1 -6 -6 z" fill="#3d4b63"></path>
+    
+    <g>
+      <path d="M48 114 q-6 26 -1 44 q8 4 13 -1 q2 -23 2 -43 q-8 3 -14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="53" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M47 169 q-3 18 0 30 q7 3 11 -1 q-1 -16 0 -29 z" fill="#3d4b63"></path>
+        <path d="M47 205 q6 3 12 0 l1 8 q-7 3 -14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    
+    <g>
+      <path d="M72 114 q6 26 1 44 q-8 4 -13 -1 q-2 -23 -2 -43 q8 3 14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="67" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M73 169 q3 18 0 30 q-7 3 -11 -1 q1 -16 0 -29 z" fill="#3d4b63"></path>
+        <path d="M73 205 q-6 3 -12 0 l-1 8 q7 3 14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    <text x="60" y="231" text-anchor="middle" font-size="9" fill="#8b97a8" stroke="none">Espalda</text>
+  </g>
+  </svg><div class="small mt-1">
+      <span style="color:var(--accent)">●</span> <b>Abdomen</b>
+      <span class="text-muted"> · <span style="color:var(--accent);opacity:.45">●</span> Oblicuos</span>
+    </div></section>
+<section><h2>Elevación de talones</h2><p class="sub">Empujar con la punta de los pies, subir los talones al máximo y bajar lento.</p><svg viewBox="0 0 250 238" class="body-map" xmlns="http://www.w3.org/2000/svg"
+    role="img" aria-label="Movimiento y músculos que trabaja este ejercicio">
+    <rect x="0" y="0" width="250" height="238" rx="16" fill="rgba(255,255,255,0.035)"/>
+    
+  <g transform="translate(2,0)" stroke="rgba(10,14,21,0.35)" stroke-width="0.7" stroke-linejoin="round">
+    <g>
+      <ellipse cx="60" cy="19" rx="11" ry="13.5" fill="#2b3547"/>
+      <path d="M54.5 30 h11 v7.5 q-5.5 2.5 -11 0 z" fill="#2b3547"/>
+      <path d="M49 38 q11 -4 22 0 l9 8 q-20 -5 -40 0 z" fill="#3d4b63"></path>
+      <path d="M59 47 q-11 -1 -18 5 q-3 8 2 14 q9 4 16 -2 z" fill="#3d4b63"></path>
+         <path d="M61 47 q11 -1 18 5 q3 8 -2 14 q-9 4 -16 -2 z" fill="#3d4b63"></path>
+         <path d="M42 68 q-3 16 2 30 l7 -4 q-4 -14 -3 -26 z" fill="#3d4b63"></path>
+         <path d="M78 68 q3 16 -2 30 l-7 -4 q4 -14 3 -26 z" fill="#3d4b63"></path>
+         <path d="M51 67 q9 -3 18 0 q2 17 -1 31 q-8 4 -16 0 q-3 -14 -1 -31 z" fill="#3d4b63"></path>
+      
+    <g>
+      <path d="M40 45 q-11 3 -13 14 q-1 8 3 12 q4 -13 12 -19 z" fill="#3d4b63"></path>
+      <path d="M31 66 q-6 10 -4 21 q6 4 10 -1 q1 -12 3 -19 z" fill="#3d4b63"></path>
+      <g>
+        <path d="M27 88 q-3 13 1 24 q6 2 8 -3 q-1 -12 -1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="30" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+      
+    <g>
+      <path d="M80 45 q11 3 13 14 q1 8 -3 12 q-4 -13 -12 -19 z" fill="#3d4b63"></path>
+      <path d="M89 66 q6 10 4 21 q-6 4 -10 -1 q-1 -12 -3 -19 z" fill="#3d4b63"></path>
+      <g>
+        <path d="M93 88 q3 13 -1 24 q-6 2 -8 -3 q1 -12 1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="90" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+    </g>
+    <path d="M49 97 q11 4 22 0 l2 16 q-13 5 -26 0 z" fill="#2b3547"/>
+    
+    
+    <g>
+      <path d="M48 114 q-6 26 -1 44 q8 4 13 -1 q2 -23 2 -43 q-8 3 -14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="53" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M47 169 q-2 23 1 38 q7 3 11 -1 q-1 -20 0 -37 z" fill="#2b3547"/>
+        <path d="M47 205 q6 3 12 0 l1 8 q-7 3 -14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    
+    <g>
+      <path d="M72 114 q6 26 1 44 q-8 4 -13 -1 q-2 -23 -2 -43 q8 3 14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="67" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M73 169 q2 23 -1 38 q-7 3 -11 -1 q1 -20 0 -37 z" fill="#2b3547"/>
+        <path d="M73 205 q-6 3 -12 0 l-1 8 q7 3 14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    <text x="60" y="231" text-anchor="middle" font-size="9" fill="#8b97a8" stroke="none">Frente</text>
+  </g>
+    
+  <g transform="translate(128,0)" stroke="rgba(10,14,21,0.35)" stroke-width="0.7" stroke-linejoin="round">
+    <g>
+      <ellipse cx="60" cy="19" rx="11" ry="13.5" fill="#2b3547"/>
+      <path d="M54.5 30 h11 v7.5 q-5.5 2.5 -11 0 z" fill="#2b3547"/>
+      <path d="M60 36 q-14 2 -21 10 q-2 12 4 22 q8 5 17 5 q9 0 17 -5 q6 -10 4 -22 q-7 -8 -21 -10 z" fill="#3d4b63"></path>
+      <path d="M42 62 q-3 18 4 30 q8 3 13 -2 q-2 -16 -2 -29 q-8 3 -15 1 z" fill="#3d4b63"></path>
+         <path d="M78 62 q3 18 -4 30 q-8 3 -13 -2 q2 -16 2 -29 q8 3 15 1 z" fill="#3d4b63"></path>
+         <path d="M51 92 q9 3 18 0 l2 13 q-11 4 -22 0 z" fill="#3d4b63"></path>
+      
+    <g>
+      <path d="M40 45 q-11 3 -13 14 q-1 8 3 12 q4 -13 12 -19 z" fill="#3d4b63"></path>
+      <path d="M31 66 q-6 10 -4 21 q6 4 10 -1 q1 -12 3 -19 z" fill="#3d4b63"></path>
+      <g>
+        <path d="M27 88 q-3 13 1 24 q6 2 8 -3 q-1 -12 -1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="30" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+      
+    <g>
+      <path d="M80 45 q11 3 13 14 q1 8 -3 12 q-4 -13 -12 -19 z" fill="#3d4b63"></path>
+      <path d="M89 66 q6 10 4 21 q-6 4 -10 -1 q-1 -12 -3 -19 z" fill="#3d4b63"></path>
+      <g>
+        <path d="M93 88 q3 13 -1 24 q-6 2 -8 -3 q1 -12 1 -20 z" fill="#3d4b63"></path>
+        <ellipse cx="90" cy="118" rx="5" ry="6.5" fill="#2b3547"/>
+      </g>
+    </g>
+    </g>
+    <path d="M49 97 q11 4 22 0 l2 16 q-13 5 -26 0 z" fill="#2b3547"/>
+    <path d="M59 105 q-12 0 -13 10 q0 9 7 11 q6 1 6 -6 z" fill="#3d4b63"></path>
+         <path d="M61 105 q12 0 13 10 q0 9 -7 11 q-6 1 -6 -6 z" fill="#3d4b63"></path>
+    
+    <g>
+      <path d="M48 114 q-6 26 -1 44 q8 4 13 -1 q2 -23 2 -43 q-8 3 -14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="53" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M47 169 q-3 18 0 30 q7 3 11 -1 q-1 -16 0 -29 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+        <path d="M47 205 q6 3 12 0 l1 8 q-7 3 -14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    
+    <g>
+      <path d="M72 114 q6 26 1 44 q-8 4 -13 -1 q-2 -23 -2 -43 q8 3 14 0 z" fill="#3d4b63"></path>
+      <g>
+        <ellipse cx="67" cy="163" rx="7" ry="5.5" fill="#2b3547"/>
+        <path d="M73 169 q3 18 0 30 q-7 3 -11 -1 q1 -16 0 -29 z" fill="var(--accent)"><animate attributeName="fill-opacity" values="1;0.5;1" dur="2.6s" repeatCount="indefinite"/></path>
+        <path d="M73 205 q-6 3 -12 0 l-1 8 q7 3 14 0 z" fill="#2b3547"/>
+      </g>
+    </g>
+    <text x="60" y="231" text-anchor="middle" font-size="9" fill="#8b97a8" stroke="none">Espalda</text>
+  </g>
+  </svg><div class="small mt-1">
+      <span style="color:var(--accent)">●</span> <b>Gemelos</b>
+      
+    </div></section>"
+
+Tab Context:
+- Executed on tabId: seed
+- Available tabs:
+  • tabId seed: "Coach G3000" (http://localhost:5173)
+</body></html>
