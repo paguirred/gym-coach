@@ -1,0 +1,39 @@
+# Publica la app en Firebase cada vez que se sube algo a main.
+# Sin claves guardadas: GitHub se identifica ante Google por federación de
+# identidad (OIDC). Solo este repo (paguirred/gym-coach) puede usarla.
+name: Desplegar a Firebase
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: desplegar
+  cancel-in-progress: false
+
+jobs:
+  desplegar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validar sintaxis de los JS
+        run: for f in public/js/*.js public/sw.js; do node --check "$f"; done
+
+      - name: Autenticar con Google
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: projects/230074230220/locations/global/workloadIdentityPools/github/providers/github-oidc
+          service_account: github-deployer@mp-gym-coach.iam.gserviceaccount.com
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Desplegar hosting y reglas de Firestore
+        run: npx -y firebase-tools@15 deploy --only hosting,firestore:rules --project mp-gym-coach --non-interactive
