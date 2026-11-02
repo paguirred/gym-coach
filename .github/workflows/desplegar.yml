@@ -37,3 +37,22 @@ jobs:
 
       - name: Desplegar hosting y reglas de Firestore
         run: npx -y firebase-tools@15 deploy --only hosting,firestore:rules --project mp-gym-coach --non-interactive
+
+      # Comprueba en el sitio real que quedó publicada la versión de este commit.
+      # Si no coincide tras ~2 minutos, el despliegue queda en rojo.
+      - name: Verificar versión publicada
+        run: |
+          esperada=$(grep -o 'APP_VERSION = "v[0-9]*"' public/js/app.js | grep -o 'v[0-9]*')
+          cache=$(grep -o 'coach-g3000-v[0-9]*' public/sw.js | grep -o 'v[0-9]*$')
+          if [ "$esperada" != "$cache" ]; then
+            echo "::error::APP_VERSION ($esperada) y CACHE ($cache) no coinciden"; exit 1
+          fi
+          for i in 1 2 3 4 5 6 7 8; do
+            publicada=$(curl -s -H 'Cache-Control: no-cache' "https://mp-gym-coach.web.app/js/app.js?t=$(date +%s)" | grep -o 'APP_VERSION = "v[0-9]*"' | grep -o 'v[0-9]*')
+            echo "Intento $i: esperada $esperada, publicada ${publicada:-ninguna}"
+            if [ "$publicada" = "$esperada" ]; then
+              echo "::notice::Versión publicada confirmada: $publicada"; exit 0
+            fi
+            sleep 15
+          done
+          echo "::error::El sitio no muestra $esperada (muestra ${publicada:-nada})"; exit 1
