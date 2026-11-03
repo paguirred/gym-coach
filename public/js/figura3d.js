@@ -366,9 +366,15 @@ function crearUtileria(def, j, mat, escena) {
 }
 
 // ---- Montaje --------------------------------------------------------------------
+// Figuras vivas: al montar una nueva se liberan las que quedaron fuera de la
+// página (la sesión reemplaza su HTML en cada paso y el teléfono admite pocas
+// figuras 3D abiertas a la vez).
+const VIVAS = new Set();
+
 export function montarFigura3D(contenedor, idEjercicio, opciones = {}) {
   const def = EJERCICIOS[idEjercicio];
   if (!def || !contenedor) return null;
+  for (const f of [...VIVAS]) if (!f.lienzo.isConnected) f.destruir();
 
   let renderer;
   try {
@@ -541,7 +547,11 @@ export function montarFigura3D(contenedor, idEjercicio, opciones = {}) {
   function dibujarSiPausado() { if (reducido || !visible) dibujar(tPausa); }
 
   const obs = "IntersectionObserver" in window
-    ? new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) arrancar(); })
+    ? new IntersectionObserver(([e]) => {
+        if (!lienzo.isConnected) { destruir(); return; }
+        visible = e.isIntersecting;
+        if (visible) arrancar();
+      })
     : null;
   obs?.observe(lienzo);
   const alCambiarVisibilidad = () => { if (!document.hidden) arrancar(); };
@@ -552,9 +562,13 @@ export function montarFigura3D(contenedor, idEjercicio, opciones = {}) {
   if (reducido) { dibujar(tPausa); opciones.alCambiarFase?.("Animación detenida (movimiento reducido)"); }
   else arrancar();
 
+  const registro = { lienzo, destruir };
+  VIVAS.add(registro);
+
   function destruir() {
     if (!activo) return;
     activo = false;
+    VIVAS.delete(registro);
     if (cuadro) cancelAnimationFrame(cuadro);
     obs?.disconnect();
     ro?.disconnect();

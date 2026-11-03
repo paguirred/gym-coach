@@ -4,6 +4,7 @@ import { EXERCISE_BY_ID } from "./exercises.js";
 import { RestTimer } from "./timer.js";
 import { speak, isVoiceOutputOn } from "./voice.js";
 import { animationFor } from "./animations.js";
+import { montarFigura3D, tieneFigura3D } from "./figura3d.js";
 import { getPref } from "./prefs.js";
 import { saveDraft, clearDraft } from "./draft.js";
 
@@ -407,7 +408,7 @@ export class SessionRunner {
       <div class="card shadow-sm">
         <div class="card-body">
           <h4 class="mb-1">${ex.name}</h4>
-          ${animOn && animationFor(item.exerciseId) ? `<div class="ex-anim-wrap">${animationFor(item.exerciseId)}</div>` : ""}
+          ${animOn ? espacioAnimacion(item.exerciseId, ex.name) : ""}
           <p class="text-muted small mb-2">${ex.cue}</p>
           ${item.note && !isWarmupSet ? `<div class="alert alert-${isReps ? "danger" : "warning"} py-2 small mb-2">⚠️ ${item.note}</div>` : ""}
           <div class="alert alert-info py-2 small mb-3">${infoLine}</div>
@@ -422,6 +423,7 @@ export class SessionRunner {
           <button id="btnRegister" class="btn btn-success btn-lg w-100">${isWarmupSet ? "Registrar calentamiento" : "Registrar serie"}</button>
         </div>
       </div>`;
+    montarAnimaciones(this.c);
 
     this.c.querySelector("#btnRegister").onclick = () => this.registerStep();
     this.attachNav(() => this.prevStep());
@@ -530,7 +532,7 @@ export class SessionRunner {
         <div class="alert alert-primary py-2 mb-2">
           <div class="small text-uppercase" style="opacity:.7;letter-spacing:.5px">Siguiente ejercicio</div>
           <div class="fw-bold">${nEx.name}${nLoad ? " · " + nLoad : ""}${nItem.warmup ? " · con calentamiento" : ""}</div>
-          ${animOn && animationFor(nItem.exerciseId) ? `<div class="ex-anim-wrap" style="margin:.25rem 0 0">${animationFor(nItem.exerciseId)}</div>` : ""}
+          ${animOn ? espacioAnimacion(nItem.exerciseId, nEx.name, "previa") : ""}
         </div>`;
       nextVoice = `Siguiente ejercicio: ${nEx.name}${nLoad ? ", " + nLoad : ""}`;
     }
@@ -554,6 +556,7 @@ export class SessionRunner {
           <button id="btnNext" class="btn btn-primary btn-lg w-100">${isLast ? "Ir a elongación" : "Saltar descanso ▶"}</button>
         </div>
       </div>`;
+    montarAnimaciones(this.c);
     this.c.querySelector("#btnNext").onclick = () => { if (this.timer) this.timer.stop(); this.nextExercise(); };
     this.attachNav(() => { if (this.timer) this.timer.stop(); this.renderExercise(); });
     try { window.scrollTo({ top: 0, behavior: "smooth" }); } catch (_) { window.scrollTo(0, 0); }
@@ -644,4 +647,33 @@ export class SessionRunner {
     const s = suggestFor(item, this.state[item.exerciseId], this.config, this.week);
     return s;
   }
+}
+
+// ---- Animación del ejercicio --------------------------------------------
+// Deja un espacio con el dibujo plano y, una vez en pantalla, lo cambia por
+// la figura 3D. Si el teléfono no puede mostrar 3D, queda el dibujo plano.
+function espacioAnimacion(exerciseId, nombre, tipo = "") {
+  const plano = animationFor(exerciseId);
+  if (!plano && !tieneFigura3D(exerciseId)) return "";
+  const previa = tipo === "previa";
+  return `<div class="ex-anim-wrap${previa ? " ex-anim-previa" : ""}" data-anim="${exerciseId}" data-nombre="${nombre}">${plano || ""}</div>`;
+}
+
+function montarAnimaciones(raiz) {
+  raiz.querySelectorAll("[data-anim]").forEach((espacio) => {
+    const id = espacio.dataset.anim;
+    if (!tieneFigura3D(id)) return;
+    const plano = espacio.innerHTML;
+    const caja = document.createElement("div");
+    caja.className = "fig3d";
+    const fase = document.createElement("span");
+    fase.className = "fig3d-fase";
+    caja.appendChild(fase);
+    espacio.replaceChildren(caja);
+    const fig = montarFigura3D(caja, id, {
+      etiqueta: `Figura 3D haciendo ${espacio.dataset.nombre || "el ejercicio"}`,
+      alCambiarFase: (t) => { fase.textContent = t; },
+    });
+    if (!fig) espacio.innerHTML = plano;
+  });
 }
