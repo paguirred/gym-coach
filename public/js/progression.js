@@ -6,6 +6,9 @@
 //   peso normal:  { blocks, lastReps, lastVerdict, updatedAt }
 //   unilateral:   { right:{blocks,lastReps}, left:{blocks,lastReps}, lastVerdict, updatedAt }
 //   inclinación:  { level, holdDisc, lastReps, lastVerdict, updatedAt }
+//   mancuernas:   se guarda APARTE, dentro del mismo ejercicio:
+//                 { ..., mancuernas: { kg, lastReps, lastVerdict, updatedAt }, ultimoEquipo }
+//                 (los bloques de la máquina y los kilos no se comparan entre sí).
 import { EXERCISE_BY_ID } from "./exercises.js";
 
 // El tipo de progresión vive en el catálogo; los ítems de rutina pueden no traerlo.
@@ -74,6 +77,19 @@ function bestOf(sets) {
   return { blocks, reps, series: sets.length };
 }
 
+// Mancuernas: kilos por mancuerna. Se sube de a 1 kg (o lo más cercano que
+// permitan los discos); se baja igual.
+export const PASO_KG = 1;
+function verdictKg(kg, reps, [min, max]) {
+  if (reps >= max) return { verdict: "up", nextKg: kg + PASO_KG };
+  if (reps >= min) return { verdict: "hold", nextKg: kg };
+  if (reps < min - 2) return { verdict: "down", nextKg: Math.max(0, kg - PASO_KG) };
+  return { verdict: "hold", nextKg: kg };
+}
+function fmtKg(n) {
+  return (Math.round(n * 10) / 10).toString().replace(".", ",");
+}
+
 // Promedio legible para los mensajes ("9,7" en vez de "9.666666").
 function fmtReps(n) {
   return (Math.round(n * 10) / 10).toString().replace(".", ",");
@@ -89,6 +105,28 @@ export function evaluateExercise({ item, config }) {
     const logged = { ...loggedRaw, sets: workSets.length ? workSets : (loggedRaw.sets || []) };
     const range = item.repRange || config.repRanges.upper;
     const exType = typeOf(item);
+
+    // Con mancuernas: kilos por mancuerna, guardados aparte de la máquina.
+    if (loggedRaw.equipo === "mancuernas") {
+      const kg = Math.max(...logged.sets.map((x) => Number(x.kg) || 0));
+      const total = logged.sets.reduce((acc, x) => acc + (Number(x.reps) || 0), 0);
+      const reps = logged.sets.length ? total / logged.sets.length : 0;
+      const r = verdictKg(kg, reps, range);
+      const prom = logged.sets.length > 1 ? ` (promedio ${fmtReps(reps)} repes en ${logged.sets.length} series)` : "";
+      const texto = r.verdict === "up"
+        ? `SUBIR a ${fmtKg(r.nextKg)} kg por mancuerna la próxima (o lo más cercano que permitan tus discos).`
+        : r.verdict === "down"
+          ? `Bajar a ${fmtKg(r.nextKg)} kg por mancuerna la próxima.`
+          : `MANTENER (${fmtKg(r.nextKg)} kg por mancuerna).`;
+      return {
+        verdict: r.verdict,
+        next: {
+          mancuernas: { kg: r.nextKg, lastReps: Math.round(reps), lastVerdict: r.verdict, updatedAt: Date.now() },
+          ultimoEquipo: "mancuernas",
+        },
+        message: texto + prom,
+      };
+    }
 
     // Solo-repes (p.ej. abdominales planos post-bariátricos): registrar sin progresión.
     if (exType === "reps") {
@@ -141,7 +179,7 @@ export function evaluateExercise({ item, config }) {
     const prom = series > 1 ? ` (promedio ${fmtReps(reps)} repes en ${series} series)` : "";
     return {
       verdict: r.verdict,
-      next: { blocks: r.nextBlocks, lastReps: Math.round(reps), lastVerdict: r.verdict, updatedAt: Date.now() },
+      next: { blocks: r.nextBlocks, lastReps: Math.round(reps), lastVerdict: r.verdict, updatedAt: Date.now(), ultimoEquipo: "maquina" },
       message: `${verdictText(r.verdict, r.nextBlocks)}${prom}`,
     };
   };
@@ -155,11 +193,16 @@ function verdictText(verdict, nextBlocks) {
 
 // Sugerencia a mostrar al INICIAR el ejercicio (lee el estado actual).
 // Devuelve la meta: series, rango, y peso(s) sugerido(s) por lado.
-export function suggestFor(item, state, config, week) {
+// equipo: "mancuernas" para la versión con mancuernas (si el ejercicio la tiene).
+export function suggestFor(item, state, config, week, equipo) {
   const range = item.repRange || config.repRanges.upper;
   const sets = setsFor(item, config, week);
   const st = state || {};
   const exType = typeOf(item);
+
+  if (equipo === "mancuernas" && admiteMancuernas(item)) {
+    return { type: "mancuernas", sets, repRange: range, kg: st.mancuernas?.kg ?? null, cue: intensityCue(config, week) };
+  }
 
   if (exType === "reps") {
     return { type: "reps", sets, repRange: range, cue: intensityCue(config, week), note: item.note };
@@ -178,6 +221,18 @@ export function suggestFor(item, state, config, week) {
     };
   }
   return { type: "weight", sets, repRange: range, blocks: st.blocks ?? null, cue: intensityCue(config, week) };
+}
+
+// ¿Se puede hacer con mancuernas? Solo ejercicios con peso, bilaterales y
+// con versión de mancuernas en el catálogo (las piernas unilaterales de
+// Patricio y los abdominales quedan en la máquina).
+export function admiteMancuernas(item) {
+  return Boolean(EXERCISE_BY_ID[item.exerciseId]?.mancuernas) && !item.unilateral && typeOf(item) === "weight";
+}
+
+// Equipo con que conviene partir: el último que usó en ese ejercicio.
+export function equipoInicial(item, state) {
+  return admiteMancuernas(item) && state?.ultimoEquipo === "mancuernas" ? "mancuernas" : "maquina";
 }
 
 // Semana teórica sugerida a partir de la fecha de inicio (para "avance manual con sugerencia").

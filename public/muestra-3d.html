@@ -22,6 +22,12 @@
       <label class="form-label fw-bold" for="selEjercicio">Ejercicio</label>
       <select id="selEjercicio" class="form-select form-select-lg mb-3"></select>
 
+      <label class="form-label fw-bold" for="selEquipo">Equipo</label>
+      <select id="selEquipo" class="form-select form-select-lg mb-3">
+        <option value="maquina">Máquina</option>
+        <option value="mancuernas">Mancuernas</option>
+      </select>
+
       <div class="card shadow-sm">
         <div class="card-body">
           <h2 id="titulo" class="h4 mb-2"></h2>
@@ -43,7 +49,7 @@
   </div>
 
   <script type="module">
-    import { EXERCISES } from "/js/exercises.js";
+    import { EXERCISES, versionDe } from "/js/exercises.js";
     import { leyendaMusculos } from "/js/bodymap.js";
     import { montarFigura3D, tieneFigura3D } from "/js/figura3d.js";
 
@@ -51,18 +57,31 @@
     const ejercicios = EXERCISES.filter((e) => tieneFigura3D(e.id));
     sel.innerHTML = ejercicios.map((e) => `<option value="${e.id}">${e.name}</option>`).join("");
 
-    const pedida = new URLSearchParams(location.search).get("e");
+    const selEq = document.getElementById("selEquipo");
+    const params = new URLSearchParams(location.search);
+    const pedida = params.get("e");
     if (pedida && tieneFigura3D(pedida)) sel.value = pedida;
+    if (params.get("q") === "mancuernas") selEq.value = "mancuernas";
+
+    // Solo se ofrece "Mancuernas" si ese ejercicio tiene esa versión.
+    function ajustarEquipo() {
+      const hay = tieneFigura3D(sel.value, "mancuernas");
+      selEq.options[1].disabled = !hay;
+      if (!hay) selEq.value = "maquina";
+    }
 
     let actual = null;
     function mostrar(id) {
-      const ex = ejercicios.find((e) => e.id === id);
+      ajustarEquipo();
+      const equipo = selEq.value;
+      const ex = versionDe(id, equipo);
       document.getElementById("titulo").textContent = ex.name;
       document.getElementById("indicacion").textContent = ex.cue;
       document.getElementById("leyenda").innerHTML = leyendaMusculos(id);
       actual?.destruir();
       const cont = document.getElementById("figura");
       actual = montarFigura3D(cont, id, {
+        equipo,
         etiqueta: `Figura 3D haciendo ${ex.name}`,
         alCambiarFase: (t) => { document.getElementById("fase").textContent = t; },
       });
@@ -70,10 +89,12 @@
       document.getElementById("sinWebgl").hidden = Boolean(actual);
       window.__figura = actual; // para pruebas automáticas
     }
-    sel.addEventListener("change", () => {
-      history.replaceState(null, "", "?e=" + sel.value);
+    const alCambiar = () => {
       mostrar(sel.value);
-    });
+      history.replaceState(null, "", `?e=${sel.value}&q=${selEq.value}`);
+    };
+    sel.addEventListener("change", alCambiar);
+    selEq.addEventListener("change", alCambiar);
     mostrar(sel.value);
   </script>
 </body>

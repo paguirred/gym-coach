@@ -258,8 +258,53 @@ const EJERCICIOS = {
   },
 };
 
-export function tieneFigura3D(id) {
-  return Boolean(EJERCICIOS[id]);
+// Versiones con mancuernas: mismo músculo, otro movimiento y sin máquina.
+const ACOSTADO = { raiz: { p: [0, 0.53, 0], r: [-90, 0, 0] }, cadera: [0, 0, 4], rodilla: [86, 0, 0] };
+const CAMARA_ACOSTADO = { alto: 0.45, objetivo: [0, 0.55, -0.15] };
+const MANCUERNAS = {
+  press_pecho: {
+    base: ACOSTADO,
+    a: { hombro: [0, 18, 70], codo: [-105, 0, 0] },
+    b: { hombro: [0, -76, 80], codo: [-12, 0, 0] },
+    utileria: ["banca", "mancuernas"],
+    camara: { giro: 60, ...CAMARA_ACOSTADO },
+    verbos: ["Empuja", "Baja"],
+  },
+  mariposa: {
+    base: ACOSTADO,
+    a: { hombro: [0, 12, 86], codo: [-18, 0, 0] },
+    b: { hombro: [0, -76, 86], codo: [-18, 0, 0] },
+    utileria: ["banca", "mancuernas"],
+    camara: { giro: 35, ...CAMARA_ACOSTADO },
+    verbos: ["Junta", "Abre"],
+  },
+  remo_sentado: {
+    base: { raiz: { p: [0, 0.9, 0], r: [45, 0, 0] }, cadera: [-57, 0, 3], rodilla: [22, 0, 0] },
+    a: { hombro: [-45, 0, 4], codo: [-4, 0, 0] },
+    b: { hombro: [18, 0, 10], codo: [-98, 0, 0] },
+    utileria: ["mancuernas"],
+    camara: { giro: 110, alto: 0.2 },
+    verbos: ["Tira", "Baja"],
+  },
+  remo_menton: { ...EJERCICIOS.remo_menton, utileria: ["mancuernas"] },
+  curl_biceps: { ...EJERCICIOS.curl_biceps, utileria: ["mancuernas"] },
+  triceps_polea: {
+    base: DE_PIE,
+    a: { hombro: [-168, 0, -10], codo: [-128, 0, 0] },
+    b: { hombro: [-168, 0, -10], codo: [-8, 0, 0] },
+    utileria: ["mancuernaUnica"],
+    camara: { giro: 125, alto: 0.12, objetivo: [0, 1.12, 0] },
+    verbos: ["Estira", "Baja"],
+  },
+  elev_talones: {
+    ...EJERCICIOS.elev_talones,
+    base: { ...DE_PIE, hombro: [0, 0, 7], codo: [-4, 0, 0] },
+    utileria: ["mancuernas:z"],
+  },
+};
+
+export function tieneFigura3D(id, equipo = "maquina") {
+  return Boolean((equipo === "mancuernas" ? MANCUERNAS : EJERCICIOS)[id]);
 }
 
 // Junta base + fase en una postura plana { "hombroI": [x,y,z], ... }.
@@ -302,6 +347,20 @@ function crearUtileria(def, j, mat, escena) {
     if (largo > 1e-6) malla.quaternion.setFromUnitVectors(Y, dir.normalize());
   };
 
+  // Mancuerna: mango con un disco en cada punta, alineada con el eje dado.
+  const mancuerna = (eje) => {
+    const g = new THREE.Group();
+    g.add(cilindro(0.014, 0.13));
+    for (const y of [-0.075, 0.075]) {
+      const disco = cilindro(0.048, 0.035);
+      disco.position.y = y;
+      g.add(disco);
+    }
+    if (eje === "x") g.rotation.z = Math.PI / 2;
+    if (eje === "z") g.rotation.x = Math.PI / 2;
+    return g;
+  };
+
   let puntoAgarre = null; // centro de la barra, para el cable
   for (const u of def.utileria) {
     const [tipo, arg] = u.split(":");
@@ -309,6 +368,25 @@ function crearUtileria(def, j, mat, escena) {
       caja(0.42, 0.06, 0.42, 0, 0.43, 0.08);
       caja(0.06, 0.4, 0.06, 0, 0.2, 0.06);
       caja(0.5, 0.03, 0.5, 0, 0.015, 0.06);
+    } else if (tipo === "banca") {
+      caja(0.32, 0.06, 1.15, 0, 0.4, -0.35);
+      caja(0.06, 0.37, 0.06, 0, 0.185, -0.75);
+      caja(0.06, 0.37, 0.06, 0, 0.185, 0.05);
+    } else if (tipo === "mancuernas") {
+      for (const l of ["I", "D"]) {
+        const m = mancuerna(arg || "x");
+        m.position.set(0, -0.01, 0);
+        j["mano" + l].add(m);
+      }
+    } else if (tipo === "mancuernaUnica") {
+      const m = mancuerna("y");
+      escena.add(m);
+      actualizar.push(() => {
+        j.manoI.getWorldPosition(tmpA);
+        j.manoD.getWorldPosition(tmpB);
+        m.position.copy(tmpA).add(tmpB).multiplyScalar(0.5);
+        j.manoI.getWorldQuaternion(m.quaternion);
+      });
     } else if (tipo === "respaldo") {
       caja(0.38, 0.62, 0.06, 0, 0.82, -0.15);
     } else if (tipo === "camilla") {
@@ -372,7 +450,7 @@ function crearUtileria(def, j, mat, escena) {
 const VIVAS = new Set();
 
 export function montarFigura3D(contenedor, idEjercicio, opciones = {}) {
-  const def = EJERCICIOS[idEjercicio];
+  const def = (opciones.equipo === "mancuernas" ? MANCUERNAS : EJERCICIOS)[idEjercicio];
   if (!def || !contenedor) return null;
   for (const f of [...VIVAS]) if (!f.lienzo.isConnected) f.destruir();
 
@@ -457,7 +535,9 @@ export function montarFigura3D(contenedor, idEjercicio, opciones = {}) {
 
   // Cámara: órbita alrededor de la figura.
   const sentado = (pBase.raiz?.p?.[1] ?? 0.98) < 0.8;
-  const objetivo = new THREE.Vector3(0, sentado ? 0.8 : 0.9, sentado ? 0.08 : 0);
+  const objetivo = def.camara.objetivo
+    ? new THREE.Vector3(...def.camara.objetivo)
+    : new THREE.Vector3(0, sentado ? 0.8 : 0.9, sentado ? 0.08 : 0);
   const camara = new THREE.PerspectiveCamera(30, 1, 0.1, 30);
   const giroInicial = def.camara.giro * G;
   let giro = giroInicial;

@@ -1,21 +1,25 @@
 // Histórico y gráficos de progreso por ejercicio (SVG puro, sin librerías).
-import { EXERCISE_BY_ID } from "./exercises.js";
+import { versionDe } from "./exercises.js";
+
+// Máquina y mancuernas van en gráficos separados (bloques y kilos no se comparan).
+const claveDe = (e) => e.exerciseId + (e.equipo === "mancuernas" ? "#mancuernas" : "");
 
 // Extrae la serie temporal de un ejercicio desde las sesiones.
 // Devuelve [{date, blocks, reps, level, side}] ordenado ascendente.
-function seriesFor(sessions, exerciseId) {
+function seriesFor(sessions, clave) {
   const points = [];
   for (const s of [...sessions].reverse()) {
-    const entry = (s.entries || []).find((e) => e.exerciseId === exerciseId);
+    const entry = (s.entries || []).find((e) => claveDe(e) === clave);
     if (!entry) continue;
     const date = s.date;
     // peso de trabajo = máx bloques; repes = máx repes de la sesión
     const sets = entry.sets || [];
     if (!sets.length) continue;
     const blocks = Math.max(...sets.map((x) => Number(x.blocks) || 0));
+    const kg = Math.max(...sets.map((x) => Number(x.kg) || 0));
     const reps = Math.max(...sets.map((x) => Number(x.reps) || 0));
     const level = sets[0]?.level;
-    points.push({ date, blocks, reps, level });
+    points.push({ date, blocks, kg, reps, level });
   }
   return points;
 }
@@ -46,14 +50,17 @@ export function renderHistory(container, sessions) {
     container.innerHTML = `<div class="text-center text-muted py-4">Aún no hay sesiones registradas.</div>`;
     return;
   }
-  const exIds = [...new Set(sessions.flatMap((s) => (s.entries || []).map((e) => e.exerciseId)))];
+  const claves = [...new Set(sessions.flatMap((s) => (s.entries || []).map(claveDe)))];
   let html = `<div class="d-flex flex-column gap-3">`;
-  for (const id of exIds) {
-    const ex = EXERCISE_BY_ID[id];
-    const pts = seriesFor(sessions, id);
+  for (const clave of claves) {
+    const [id, equipo] = clave.split("#");
+    const ex = versionDe(id, equipo);
+    const pts = seriesFor(sessions, clave);
     const isIncline = ex?.progressionType === "incline";
+    const isKg = equipo === "mancuernas";
     const chart = isIncline
       ? lineChart(pts, "level", "#0d6efd", " niv")
+      : isKg ? lineChart(pts, "kg", "#0d6efd", " kg")
       : lineChart(pts, "blocks", "#0d6efd", " bl");
     const repsChart = lineChart(pts, "reps", "#20c997", " rep");
     html += `
@@ -62,7 +69,7 @@ export function renderHistory(container, sessions) {
           <h6 class="card-title mb-2">${ex?.name || id}</h6>
           <div class="row g-2">
             <div class="col-6">
-              <div class="small text-muted mb-1">${isIncline ? "Nivel inclinación" : "Bloques"}</div>
+              <div class="small text-muted mb-1">${isIncline ? "Nivel inclinación" : isKg ? "Kilos por mancuerna" : "Bloques"}</div>
               ${chart}
             </div>
             <div class="col-6">

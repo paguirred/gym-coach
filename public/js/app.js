@@ -23,7 +23,7 @@ const $app = document.getElementById("app");
 let CURRENT = { user: null, uid: null };
 
 const IS_MOBILE = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
-const APP_VERSION = "v26"; // se sube junto con el caché del service worker
+const APP_VERSION = "v27"; // se sube junto con el caché del service worker
 
 // Completa un login por redirección al volver (y muestra el error si lo hubo).
 getRedirectResult(auth).catch((e) => {
@@ -270,10 +270,12 @@ function prevRepsByExercise(sessions) {
   const map = {};
   for (const s of sessions) { // vienen ordenadas de más reciente a más antigua
     for (const e of s.entries || []) {
-      if (map[e.exerciseId]) continue; // ya tenemos la más reciente
+      // Máquina y mancuernas se recuerdan por separado.
+      const clave = e.exerciseId + (e.equipo === "mancuernas" ? "#mancuernas" : "");
+      if (map[clave]) continue; // ya tenemos la más reciente
       const work = (e.sets || []).filter((x) => !x.warmup);
       if (!work.length) continue;
-      map[e.exerciseId] = { date: s.date, reps: work.map((x) => ({ reps: x.reps, side: x.side })) };
+      map[clave] = { date: s.date, reps: work.map((x) => ({ reps: x.reps, side: x.side })) };
     }
   }
   return map;

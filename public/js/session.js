@@ -1,6 +1,6 @@
 // Flujo guiado de una sesión, ejercicio por ejercicio.
-import { suggestFor, evaluateExercise } from "./progression.js";
-import { EXERCISE_BY_ID } from "./exercises.js";
+import { suggestFor, evaluateExercise, admiteMancuernas, equipoInicial } from "./progression.js";
+import { versionDe } from "./exercises.js";
 import { RestTimer } from "./timer.js";
 import { speak, isVoiceOutputOn } from "./voice.js";
 import { animationFor } from "./animations.js";
@@ -96,7 +96,9 @@ export class SessionRunner {
     this.i = typeof d.i === "number" ? d.i : 0;
     if (this.i < 0 || this.i >= this.list.length) return this.renderIntro();
     const item = this.list[this.i];
-    const suggestion = suggestFor(item, this.state[item.exerciseId], this.config, this.week);
+    const equipo = this.logged[item.exerciseId]?.equipo === "mancuernas" ? "mancuernas" : "maquina";
+    this._equipos = { ...(this._equipos || {}), [item.exerciseId]: equipo };
+    const suggestion = suggestFor(item, this.state[item.exerciseId], this.config, this.week, equipo);
     this._suggestion = suggestion;
     this._steps = stepsFor(item, suggestion);
     this._stepIdx = Math.min(Math.max(d.stepIdx || 0, 0), this._steps.length - 1);
@@ -294,11 +296,29 @@ export class SessionRunner {
     this.renderExercise();
   }
 
+  // Equipo de este ejercicio en esta sesión: el elegido, o el último que usó.
+  equipoDe(item) {
+    const elegido = this._equipos?.[item.exerciseId];
+    if (elegido && (elegido === "maquina" || admiteMancuernas(item))) return elegido;
+    return equipoInicial(item, this.state[item.exerciseId]);
+  }
+
+  // Cambiar máquina <-> mancuernas: solo antes de registrar la primera serie
+  // (las series de un ejercicio no pueden mezclar bloques y kilos).
+  cambiarEquipo(equipo) {
+    const item = this.list[this.i];
+    if (this.logged[item.exerciseId]?.sets.length) return;
+    this._equipos = { ...(this._equipos || {}), [item.exerciseId]: equipo };
+    this.renderExercise();
+  }
+
   renderExercise() {
     const item = this.list[this.i];
-    const ex = EXERCISE_BY_ID[item.exerciseId];
-    const suggestion = suggestFor(item, this.state[item.exerciseId], this.config, this.week);
+    const equipo = this.equipoDe(item);
+    const ex = versionDe(item.exerciseId, equipo);
+    const suggestion = suggestFor(item, this.state[item.exerciseId], this.config, this.week, equipo);
     this.logged[item.exerciseId] = { sets: [], level: suggestion.level };
+    if (equipo === "mancuernas") this.logged[item.exerciseId].equipo = "mancuernas";
     this._suggestion = suggestion;
     this._steps = stepsFor(item, suggestion);
     this._stepIdx = 0;
@@ -316,17 +336,20 @@ export class SessionRunner {
       const b = s.sides[0].blocks;
       return `Siguiente ejercicio: ${ex.name}, empezar por la derecha${b != null ? `, ${b} bloques` : ""}`;
     }
+    if (s.type === "mancuernas") return `Siguiente ejercicio: ${ex.name}${s.kg != null ? `, ${kgTexto(s.kg)} kilos por mancuerna` : ""}`;
     return `Siguiente ejercicio: ${ex.name}${s.blocks != null ? `, ${s.blocks} bloques` : ""}`;
   }
 
   renderStep() {
     const item = this.list[this.i];
-    const ex = EXERCISE_BY_ID[item.exerciseId];
+    const equipo = this.logged[item.exerciseId]?.equipo === "mancuernas" ? "mancuernas" : "maquina";
+    const ex = versionDe(item.exerciseId, equipo);
     const s = this._suggestion;
     const step = this._steps[this._stepIdx];
     const isWarmupSet = step.warmup === true;
     const isIncline = s.type === "incline";
     const isReps = s.type === "reps";
+    const isKg = s.type === "mancuernas";
     const [rmin, rmax] = s.repRange;
     const animOn = getPref("anim", true);
 
@@ -347,6 +370,8 @@ export class SessionRunner {
       }
     } else if (isIncline) {
       blocksDefault = "";
+    } else if (isKg) {
+      blocksDefault = s.kg ?? "";
     } else {
       blocksDefault = s.blocks ?? "";
     }
@@ -357,11 +382,15 @@ export class SessionRunner {
       const previas = (this.logged[item.exerciseId]?.sets || []).filter((x) => !x.warmup);
       const ultima = [...previas].reverse().find((x) => (step.side ? x.side === step.side : true));
       if (ultima && ultima.blocks != null) blocksDefault = ultima.blocks;
+      if (ultima && ultima.kg != null) blocksDefault = ultima.kg;
     }
 
     // Bloque de carga.
     let loadInput;
-    if (isWarmupSet) {
+    if (isKg) {
+      loadInput = `<label class="form-label fw-bold" for="inKg">Kilos por mancuerna${isWarmupSet ? " (calentamiento)" : ""}</label>
+            <input id="inKg" type="number" inputmode="decimal" step="0.5" class="form-control form-control-lg mb-3" value="${isWarmupSet ? "" : blocksDefault}" placeholder="${isWarmupSet ? "liviano" : "kilos"}" min="0">`;
+    } else if (isWarmupSet) {
       loadInput = `<label class="form-label fw-bold" for="inBlocks">Bloques (calentamiento)</label>
             <input id="inBlocks" type="number" inputmode="numeric" class="form-control form-control-lg mb-3" value="${blocksDefault}" placeholder="1" min="0">`;
     } else if (isReps) {
@@ -382,7 +411,7 @@ export class SessionRunner {
       : `${s.cue || ""} · Rango objetivo: ${rmin}–${rmax} repes · Tempo 2/3`;
 
     // Repes de la última sesión, para motivar a superarlas.
-    const prev = this.prevByExercise[item.exerciseId];
+    const prev = this.prevByExercise[item.exerciseId + (isKg ? "#mancuernas" : "")];
     const prevLine = (!isWarmupSet && prev && prev.reps && prev.reps.length)
       ? `<div class="alert alert-primary py-2 small mb-3">💪 La vez anterior: <b>${prev.reps.map((r) => r.reps + (r.side ? (r.side === "R" ? " der" : " izq") : "")).join(" · ")}</b> repes — ¡supéralo!</div>`
       : "";
@@ -408,7 +437,8 @@ export class SessionRunner {
       <div class="card shadow-sm">
         <div class="card-body">
           <h4 class="mb-1">${ex.name}</h4>
-          ${animOn ? espacioAnimacion(item.exerciseId, ex.name) : ""}
+          ${this.selectorEquipo(item, equipo)}
+          ${animOn ? espacioAnimacion(item.exerciseId, ex.name, "", equipo) : ""}
           <p class="text-muted small mb-2">${ex.cue}</p>
           ${item.note && !isWarmupSet ? `<div class="alert alert-${isReps ? "danger" : "warning"} py-2 small mb-2">⚠️ ${item.note}</div>` : ""}
           <div class="alert alert-info py-2 small mb-3">${infoLine}</div>
@@ -426,7 +456,29 @@ export class SessionRunner {
     montarAnimaciones(this.c);
 
     this.c.querySelector("#btnRegister").onclick = () => this.registerStep();
+    this.c.querySelectorAll("[data-equipo]").forEach((b) => {
+      b.onclick = () => { if (b.dataset.equipo !== equipo) this.cambiarEquipo(b.dataset.equipo); };
+    });
     this.attachNav(() => this.prevStep());
+  }
+
+  // Máquina / Mancuernas. Se elige antes de la primera serie; después queda fijo.
+  selectorEquipo(item, equipo) {
+    if (!admiteMancuernas(item)) return "";
+    const yaEmpezo = this.logged[item.exerciseId]?.sets.length > 0;
+    if (yaEmpezo) {
+      return `<div class="small text-muted mb-2">Equipo: <b>${equipo === "mancuernas" ? "Mancuernas" : "Máquina"}</b></div>`;
+    }
+    const boton = (valor, texto) => {
+      const activo = valor === equipo;
+      return `<button type="button" class="btn equipo-btn" data-equipo="${valor}" aria-pressed="${activo}">${texto}</button>`;
+    };
+    return `<div class="mb-2" id="selEquipo">
+        <div class="small fw-bold mb-1" id="lblEquipo">Equipo</div>
+        <div class="btn-group w-100" role="group" aria-labelledby="lblEquipo">
+          ${boton("maquina", "Máquina")}${boton("mancuernas", "Mancuernas")}
+        </div>
+      </div>`;
   }
 
   // Error visible junto al formulario, con foco en el campo que falta.
@@ -447,13 +499,19 @@ export class SessionRunner {
 
     // Con peso, 0 bloques no es una serie válida: antes se registraba en
     // silencio y el veredicto quedaba mal.
-    if (!isWarmupSet && s.type !== "reps" && s.type !== "incline") {
+    if (s.type === "mancuernas") {
+      const kg = Number(this.c.querySelector("#inKg").value);
+      if (!isWarmupSet && (!kg || kg <= 0)) return this.mostrarError("Anota con cuántos kilos por mancuerna hiciste la serie.", "#inKg");
+    } else if (!isWarmupSet && s.type !== "reps" && s.type !== "incline") {
       const b = Number(this.c.querySelector("#inBlocks").value);
       if (!b || b < 1) return this.mostrarError("Anota con cuántos bloques hiciste la serie.", "#inBlocks");
     }
 
     let rec;
-    if (isWarmupSet) {
+    if (s.type === "mancuernas") {
+      const kg = Number(this.c.querySelector("#inKg").value) || 0;
+      rec = isWarmupSet ? { warmup: true, reps, kg } : { setIndex: step.setIndex, reps, kg };
+    } else if (isWarmupSet) {
       // La serie de calentamiento no cuenta para la progresión.
       rec = { warmup: true, reps, blocks: Number(this.c.querySelector("#inBlocks").value) || 0 };
     } else {
@@ -466,6 +524,9 @@ export class SessionRunner {
       if (step.side) rec.side = step.side;
     }
     this.logged[item.exerciseId].sets.push(rec);
+    // Ya empezó: el equipo queda fijo para este ejercicio.
+    const sel = this.c.querySelector("#selEquipo");
+    if (sel) sel.outerHTML = this.selectorEquipo(item, this.logged[item.exerciseId].equipo || "maquina");
     if (!isWarmupSet && s.type === "incline") this.logged[item.exerciseId].level = rec.level;
 
     this._stepIdx++;
@@ -508,7 +569,7 @@ export class SessionRunner {
 
   finishExercise() {
     const item = this.list[this.i];
-    const ex = EXERCISE_BY_ID[item.exerciseId];
+    const ex = versionDe(item.exerciseId, this.logged[item.exerciseId]?.equipo);
     const evaluate = evaluateExercise({ item, config: this.config });
     const result = evaluate(this.logged[item.exerciseId]);
     this.results[item.exerciseId] = { ...result, item };
@@ -521,10 +582,12 @@ export class SessionRunner {
     let nextVoice = "";
     if (!isLast) {
       const nItem = this.list[this.i + 1];
-      const nEx = EXERCISE_BY_ID[nItem.exerciseId];
-      const nSug = suggestFor(nItem, this.state[nItem.exerciseId], this.config, this.week);
+      const nEquipo = this.equipoDe(nItem);
+      const nEx = versionDe(nItem.exerciseId, nEquipo);
+      const nSug = suggestFor(nItem, this.state[nItem.exerciseId], this.config, this.week, nEquipo);
       const nLoad = nSug.type === "incline" ? `nivel ${nSug.level}`
         : nSug.type === "reps" ? ""
+        : nSug.type === "mancuernas" ? (nSug.kg != null ? `${kgTexto(nSug.kg)} kg por mancuerna` : "")
         : nSug.type === "unilateral" ? `${nSug.sides[0].blocks ?? "?"} bloques (empieza derecha)`
         : (nSug.blocks != null ? `${nSug.blocks} bloques` : "");
       const animOn = getPref("anim", true);
@@ -532,9 +595,9 @@ export class SessionRunner {
         <div class="alert alert-primary py-2 mb-2">
           <div class="small text-uppercase" style="opacity:.7;letter-spacing:.5px">Siguiente ejercicio</div>
           <div class="fw-bold">${nEx.name}${nLoad ? " · " + nLoad : ""}${nItem.warmup ? " · con calentamiento" : ""}</div>
-          ${animOn ? espacioAnimacion(nItem.exerciseId, nEx.name, "previa") : ""}
+          ${animOn ? espacioAnimacion(nItem.exerciseId, nEx.name, "previa", nEquipo) : ""}
         </div>`;
-      nextVoice = `Siguiente ejercicio: ${nEx.name}${nLoad ? ", " + nLoad : ""}`;
+      nextVoice = `Siguiente ejercicio: ${nEx.name}${nLoad ? ", " + nLoad.replace(" kg ", " kilos ") : ""}`;
     }
 
     // Habla el veredicto y, al terminar, anuncia el siguiente ejercicio.
@@ -597,12 +660,14 @@ export class SessionRunner {
       .filter((item) => this.logged[item.exerciseId]?.sets.length)
       .map((item) => {
         const r = this.results[item.exerciseId];
+        const equipo = this.logged[item.exerciseId].equipo;
         return {
           exerciseId: item.exerciseId,
           order: item.order,
+          ...(equipo === "mancuernas" ? { equipo } : {}),
           sets: this.logged[item.exerciseId].sets,
           verdict: r?.verdict ?? "hold",
-          suggested: this._suggestionSnapshot(item),
+          suggested: this._suggestionSnapshot(item, equipo),
         };
       });
 
@@ -617,11 +682,13 @@ export class SessionRunner {
 
     // resumen visual
     const rows = entries.map((e) => {
-      const ex = EXERCISE_BY_ID[e.exerciseId];
+      const ex = versionDe(e.exerciseId, e.equipo);
       const item = this.list.find((x) => x.exerciseId === e.exerciseId);
       const type = item?.progressionType || ex.progressionType || "weight";
       const best = Math.max(...e.sets.map((s) => s.reps));
-      const load = type === "reps"
+      const load = e.equipo === "mancuernas"
+        ? `${kgTexto(Math.max(...e.sets.map((s) => s.kg || 0)))} kg`
+        : type === "reps"
         ? "—"
         : type === "incline"
           ? `niv ${e.sets[0]?.level ?? "?"}`
@@ -643,8 +710,8 @@ export class SessionRunner {
     };
   }
 
-  _suggestionSnapshot(item) {
-    const s = suggestFor(item, this.state[item.exerciseId], this.config, this.week);
+  _suggestionSnapshot(item, equipo) {
+    const s = suggestFor(item, this.state[item.exerciseId], this.config, this.week, equipo);
     return s;
   }
 }
@@ -652,17 +719,24 @@ export class SessionRunner {
 // ---- Animación del ejercicio --------------------------------------------
 // Deja un espacio con el dibujo plano y, una vez en pantalla, lo cambia por
 // la figura 3D. Si el teléfono no puede mostrar 3D, queda el dibujo plano.
-function espacioAnimacion(exerciseId, nombre, tipo = "") {
-  const plano = animationFor(exerciseId);
-  if (!plano && !tieneFigura3D(exerciseId)) return "";
+function espacioAnimacion(exerciseId, nombre, tipo = "", equipo = "maquina") {
+  // El dibujo plano es de la máquina: con mancuernas solo se muestra la 3D.
+  const plano = equipo === "mancuernas" ? "" : animationFor(exerciseId);
+  if (!plano && !tieneFigura3D(exerciseId, equipo)) return "";
   const previa = tipo === "previa";
-  return `<div class="ex-anim-wrap${previa ? " ex-anim-previa" : ""}" data-anim="${exerciseId}" data-nombre="${nombre}">${plano || ""}</div>`;
+  return `<div class="ex-anim-wrap${previa ? " ex-anim-previa" : ""}" data-anim="${exerciseId}" data-equipo-anim="${equipo}" data-nombre="${nombre}">${plano || ""}</div>`;
+}
+
+// 4.5 -> "4,5"
+function kgTexto(n) {
+  return (Math.round(Number(n) * 10) / 10).toString().replace(".", ",");
 }
 
 function montarAnimaciones(raiz) {
   raiz.querySelectorAll("[data-anim]").forEach((espacio) => {
     const id = espacio.dataset.anim;
-    if (!tieneFigura3D(id)) return;
+    const equipo = espacio.dataset.equipoAnim || "maquina";
+    if (!tieneFigura3D(id, equipo)) return;
     const plano = espacio.innerHTML;
     const caja = document.createElement("div");
     caja.className = "fig3d";
@@ -671,9 +745,13 @@ function montarAnimaciones(raiz) {
     caja.appendChild(fase);
     espacio.replaceChildren(caja);
     const fig = montarFigura3D(caja, id, {
+      equipo,
       etiqueta: `Figura 3D haciendo ${espacio.dataset.nombre || "el ejercicio"}`,
       alCambiarFase: (t) => { fase.textContent = t; },
     });
-    if (!fig) espacio.innerHTML = plano;
+    if (!fig) {
+      if (plano) espacio.innerHTML = plano;
+      else espacio.remove();
+    }
   });
 }
