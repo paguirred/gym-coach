@@ -18,6 +18,14 @@
   --text: #eaf0f7;
   --muted: #8b97a8;
 
+  /* Figura 3D (js/figura3d.js) */
+  --fig-cuerpo: #5b6a82;
+  --fig-musculo: #74859f;
+  --fig-maquina: #2a3446;
+  --fig-almohadilla: #1c2230;
+  --fig-luz: #ffffff;
+  --fig-piso: #000000;
+
   /* Overrides de Bootstrap para que herede el tema */
   --bs-body-bg: var(--bg);
   --bs-body-color: var(--text);
@@ -273,6 +281,32 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
   max-width: 280px;
   height: auto;
   border-radius: 16px;
+}
+
+/* ---- Figura 3D ----------------------------------------------------------- */
+.fig3d {
+  position: relative;
+  border-radius: 16px;
+  background: radial-gradient(120% 90% at 50% 20%, var(--surface-2), var(--surface));
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+.fig3d-lienzo {
+  display: block;
+  touch-action: pan-y;   /* lo horizontal gira la figura; lo vertical desplaza */
+  cursor: grab;
+}
+.fig3d-fase {
+  position: absolute;
+  left: 12px;
+  top: 10px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  pointer-events: none;
 }
 
 /* ---- Utilidades ---------------------------------------------------------- */

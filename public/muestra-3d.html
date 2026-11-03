@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es-CL" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Figura 3D · Coach G3000</title>
+  <meta name="theme-color" content="#0a0e15" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <main class="container py-3" style="max-width: 520px;">
+      <h1 class="h4 mb-1">Figura 3D — muestra</h1>
+      <p class="text-muted small mb-3">
+        Propuesta para reemplazar el dibujo plano durante la sesión. Todavía no está en la app.
+      </p>
+
+      <label class="form-label fw-bold" for="selEjercicio">Ejercicio</label>
+      <select id="selEjercicio" class="form-select form-select-lg mb-3"></select>
+
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h2 id="titulo" class="h4 mb-2"></h2>
+          <div id="figura" class="fig3d mb-2">
+            <span id="fase" class="fig3d-fase"></span>
+          </div>
+          <div id="leyenda"></div>
+          <p id="indicacion" class="text-muted small mt-2 mb-2"></p>
+          <p class="small mb-0" style="color: var(--muted)">
+            Desliza el dedo de lado a lado sobre la figura para girarla. Doble toque: vuelve a la vista inicial.
+          </p>
+        </div>
+      </div>
+
+      <div id="sinWebgl" class="alert alert-warning mt-3" hidden>
+        Este teléfono no pudo mostrar la figura 3D. En la app seguirá apareciendo el dibujo plano.
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { EXERCISES } from "/js/exercises.js";
+    import { leyendaMusculos } from "/js/bodymap.js";
+    import { montarFigura3D, tieneFigura3D } from "/js/figura3d.js";
+
+    const sel = document.getElementById("selEjercicio");
+    const ejercicios = EXERCISES.filter((e) => tieneFigura3D(e.id));
+    sel.innerHTML = ejercicios.map((e) => `<option value="${e.id}">${e.name}</option>`).join("");
+
+    const pedida = new URLSearchParams(location.search).get("e");
+    if (pedida && tieneFigura3D(pedida)) sel.value = pedida;
+
+    let actual = null;
+    function mostrar(id) {
+      const ex = ejercicios.find((e) => e.id === id);
+      document.getElementById("titulo").textContent = ex.name;
+      document.getElementById("indicacion").textContent = ex.cue;
+      document.getElementById("leyenda").innerHTML = leyendaMusculos(id);
+      actual?.destruir();
+      const cont = document.getElementById("figura");
+      actual = montarFigura3D(cont, id, {
+        etiqueta: `Figura 3D haciendo ${ex.name}`,
+        alCambiarFase: (t) => { document.getElementById("fase").textContent = t; },
+      });
+      cont.hidden = !actual;
+      document.getElementById("sinWebgl").hidden = Boolean(actual);
+      window.__figura = actual; // para pruebas automáticas
+    }
+    sel.addEventListener("change", () => {
+      history.replaceState(null, "", "?e=" + sel.value);
+      mostrar(sel.value);
+    });
+    mostrar(sel.value);
+  </script>
+</body>
+</html>
