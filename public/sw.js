@@ -2,7 +2,7 @@
 // con señal, siempre trae la última versión y refresca el caché;
 // sin señal, sirve la última copia cacheada. Así una versión nueva
 // aparece sola al recargar, sin tener que limpiar caché a mano.
-const CACHE = "coach-g3000-v28";
+const CACHE = "coach-g3000-v29";
 const SHELL = [
   "/",
   "/index.html",
@@ -21,6 +21,11 @@ const SHELL = [
   "/js/figura3d.js",
   "/js/bodymap.js",
   "/js/vendor/three.module.min.js",
+  "/js/sonido.js",
+  "/js/voz-texto.js",
+  "/js/voz-grabada.js",
+  "/audio/voz.json",
+  "/audio/voz.mp3",
   "/js/prefs.js",
   "/js/draft.js",
   "/js/history.js",

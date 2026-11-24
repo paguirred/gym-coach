@@ -1,22 +1,17 @@
-// Guía por voz (speechSynthesis, español) — PRIORITARIA (voz de salida).
+// Guía por voz en español — PRIORITARIA (voz de salida).
 // Y dictado opcional de repes (SpeechRecognition) — SECUNDARIO, activable.
+
+import { compartirAudioConMusica } from "./sonido.js";
+import { hablarGrabado, callarGrabado, precargarVoz } from "./voz-grabada.js";
+
+export { compartirAudioConMusica };
 
 let enabledOut = true;
 let esVoice = null;
 
-// Compartir el audio con la música (Spotify, etc.): "transient" es el tipo
-// de sonido corto que BAJA el volumen de la música mientras suena y la deja
-// seguir después, en vez de detenerla. Lo soportan iPhone/iPad (Safari 16.4
-// o superior); en navegadores sin esta función no cambia nada.
-// Se fija al cargar, antes de crear cualquier sonido (voz o pitido).
-export function compartirAudioConMusica() {
-  try {
-    if (navigator.audioSession && navigator.audioSession.type !== "transient") {
-      navigator.audioSession.type = "transient";
-    }
-  } catch (_) { /* sin soporte: queda el comportamiento del sistema */ }
-}
-compartirAudioConMusica();
+// La voz principal es GRABADA (voz-grabada.js): en iPhone deja seguir la
+// música de otras apps. La voz del sistema queda solo de respaldo, para
+// frases que no estén grabadas.
 
 function pickSpanishVoice() {
   const voices = window.speechSynthesis?.getVoices?.() || [];
@@ -38,12 +33,25 @@ export function isVoiceOutputOn() { return enabledOut; }
 // Habla `text`. Si se pasa `onEnd`, se llama cuando la voz TERMINA de leer
 // (o de inmediato si la voz está apagada/no soportada). Siempre se llama una
 // sola vez, con un respaldo por si el evento `onend` no dispara.
+let turno = 0; // cada speak() nuevo anula al anterior
+
 export function speak(text, onEnd) {
   const finish = once(onEnd);
-  if (!enabledOut || !window.speechSynthesis) { finish(); return; }
+  if (!enabledOut) { finish(); return; }
+  const mio = ++turno;
+  callarGrabado();
+  try { window.speechSynthesis?.cancel(); } catch (_) {}
+  hablarGrabado(text, finish, () => mio === turno).then((dicho) => {
+    if (dicho || mio !== turno) return;
+    hablarSistema(text, finish);
+  }, () => { if (mio === turno) hablarSistema(text, finish); });
+}
+
+// Respaldo: voz del sistema (en iPhone detiene la música).
+function hablarSistema(text, finish) {
+  if (!window.speechSynthesis) { finish(); return; }
   try {
     compartirAudioConMusica();
-    window.speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(text);
     u.lang = esVoice?.lang || "es-CL";
     if (esVoice) u.voice = esVoice;
@@ -58,6 +66,9 @@ export function speak(text, onEnd) {
     setTimeout(finish, ms);
   } catch (_) { finish(); }
 }
+
+// Descarga la voz grabada apenas abre la app, para que esté lista al entrenar.
+export function prepararVoz() { return precargarVoz(); }
 
 // Envuelve un callback para que se ejecute a lo más una vez.
 function once(fn) {

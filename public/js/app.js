@@ -12,18 +12,19 @@ import { EXERCISE_BY_ID } from "./exercises.js";
 import { suggestedWeek } from "./progression.js";
 import { SessionRunner } from "./session.js";
 import { renderHistory, renderSessionLog } from "./history.js";
-import { speak, setVoiceOutput, isVoiceOutputOn } from "./voice.js";
+import { speak, setVoiceOutput, isVoiceOutputOn, prepararVoz } from "./voice.js";
 import { getPref, setPref } from "./prefs.js";
 import { loadDraft, clearDraft, hace } from "./draft.js";
 
 // Inicializa la voz según la preferencia guardada.
 setVoiceOutput(getPref("voice", true));
+prepararVoz(); // la voz grabada queda lista (y en caché) antes de entrenar
 
 const $app = document.getElementById("app");
 let CURRENT = { user: null, uid: null };
 
 const IS_MOBILE = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
-const APP_VERSION = "v28"; // se sube junto con el caché del service worker
+const APP_VERSION = "v29"; // se sube junto con el caché del service worker
 
 // Completa un login por redirección al volver (y muestra el error si lo hubo).
 getRedirectResult(auth).catch((e) => {

@@ -25,8 +25,13 @@ Isaac), todos en la misma máquina **Ten Series G3000**. En producción en
   usa el **promedio** de repes de las series reales (no la mejor serie).
 - `public/js/session.js` — flujo guiado de la sesión. `app.js` — inicio, ajustes.
 - `public/js/draft.js` — borrador de la sesión en curso (sobrevive a recargas).
-- `public/js/bodymap.js` — figura articulada con músculos encendidos (todavía
-  NO está integrada; la app usa `animations.js`). Muestra en `muestra-musculos.html`.
+- `public/js/figura3d.js` — figura 3D (three.js en `js/vendor`) que hace cada
+  ejercicio, en máquina y con mancuernas. Muestra en `public/muestra-3d.html`.
+- **Voz del entrenador = audio grabado** (`public/audio/voz.mp3`), no la voz del
+  sistema, que en iPhone detiene la música. Al agregar un ejercicio o una frase
+  nueva, regenerarla: ver `herramientas/voz/README.md`.
+- `public/js/bodymap.js` — mapa de músculos por ejercicio (lo usa la figura 3D);
+  `animations.js` queda como dibujo plano de respaldo.
 - Sin bundler ni build: JS vanilla en módulos + Bootstrap 5.3 por CDN.
 
 ## Reglas del dominio (no se negocian)

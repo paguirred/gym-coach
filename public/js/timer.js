@@ -1,12 +1,10 @@
 // Temporizador de descanso con barra visual, sonido (WebAudio) y vibración.
-import { compartirAudioConMusica } from "./voice.js";
-
-let audioCtx = null;
+import { contextoAudio } from "./sonido.js";
 
 function beep(freq = 880, ms = 180) {
   try {
-    compartirAudioConMusica(); // el pitido baja la música, no la detiene
-    audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+    const audioCtx = contextoAudio(); // compartido: baja la música, no la detiene
+    if (!audioCtx) return;
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
     osc.frequency.value = freq;

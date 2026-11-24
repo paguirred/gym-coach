@@ -585,11 +585,7 @@ export class SessionRunner {
       const nEquipo = this.equipoDe(nItem);
       const nEx = versionDe(nItem.exerciseId, nEquipo);
       const nSug = suggestFor(nItem, this.state[nItem.exerciseId], this.config, this.week, nEquipo);
-      const nLoad = nSug.type === "incline" ? `nivel ${nSug.level}`
-        : nSug.type === "reps" ? ""
-        : nSug.type === "mancuernas" ? (nSug.kg != null ? `${kgTexto(nSug.kg)} kg por mancuerna` : "")
-        : nSug.type === "unilateral" ? `${nSug.sides[0].blocks ?? "?"} bloques (empieza derecha)`
-        : (nSug.blocks != null ? `${nSug.blocks} bloques` : "");
+      const nLoad = textoCarga(nSug);
       const animOn = getPref("anim", true);
       nextPreview = `
         <div class="alert alert-primary py-2 mb-2">
@@ -725,6 +721,15 @@ function espacioAnimacion(exerciseId, nombre, tipo = "", equipo = "maquina") {
   if (!plano && !tieneFigura3D(exerciseId, equipo)) return "";
   const previa = tipo === "previa";
   return `<div class="ex-anim-wrap${previa ? " ex-anim-previa" : ""}" data-anim="${exerciseId}" data-equipo-anim="${equipo}" data-nombre="${nombre}">${plano || ""}</div>`;
+}
+
+// Carga sugerida en palabras ("5 bloques", "nivel 3", "4,5 kg por mancuerna").
+export function textoCarga(sug) {
+  if (sug.type === "incline") return `nivel ${sug.level}`;
+  if (sug.type === "reps") return "";
+  if (sug.type === "mancuernas") return sug.kg != null ? `${kgTexto(sug.kg)} kg por mancuerna` : "";
+  if (sug.type === "unilateral") return sug.sides[0].blocks != null ? `${sug.sides[0].blocks} bloques (empieza derecha)` : "empieza derecha";
+  return sug.blocks != null ? `${sug.blocks} bloques` : "";
 }
 
 // 4.5 -> "4,5"
