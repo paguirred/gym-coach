@@ -4,6 +4,20 @@
 let enabledOut = true;
 let esVoice = null;
 
+// Compartir el audio con la música (Spotify, etc.): "transient" es el tipo
+// de sonido corto que BAJA el volumen de la música mientras suena y la deja
+// seguir después, en vez de detenerla. Lo soportan iPhone/iPad (Safari 16.4
+// o superior); en navegadores sin esta función no cambia nada.
+// Se fija al cargar, antes de crear cualquier sonido (voz o pitido).
+export function compartirAudioConMusica() {
+  try {
+    if (navigator.audioSession && navigator.audioSession.type !== "transient") {
+      navigator.audioSession.type = "transient";
+    }
+  } catch (_) { /* sin soporte: queda el comportamiento del sistema */ }
+}
+compartirAudioConMusica();
+
 function pickSpanishVoice() {
   const voices = window.speechSynthesis?.getVoices?.() || [];
   // preferimos es-CL / es-419 / es-ES en ese orden
@@ -28,6 +42,7 @@ export function speak(text, onEnd) {
   const finish = once(onEnd);
   if (!enabledOut || !window.speechSynthesis) { finish(); return; }
   try {
+    compartirAudioConMusica();
     window.speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(text);
     u.lang = esVoice?.lang || "es-CL";
