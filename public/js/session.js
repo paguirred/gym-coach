@@ -7,6 +7,7 @@ import { animationFor } from "./animations.js";
 import { montarFigura3D, tieneFigura3D } from "./figura3d.js";
 import { getPref } from "./prefs.js";
 import { saveDraft, clearDraft } from "./draft.js";
+import { mantenerPantallaEncendida } from "./pantalla.js";
 
 // perSide: true => se hace 30 s por cada lado (izquierdo y derecho).
 export const WARMUP_GENERAL = [
@@ -77,7 +78,7 @@ export class SessionRunner {
     this.timer = null;
   }
 
-  start() { this.renderIntro(); }
+  start() { mantenerPantallaEncendida(true); this.renderIntro(); }
 
   // --- Borrador: guardar el avance para sobrevivir a una recarga -----------
   persist() {
@@ -91,6 +92,7 @@ export class SessionRunner {
   // Retoma un entrenamiento a medias: reconstruye el ejercicio y la serie donde
   // iba, sin pasar por renderExercise() (que reiniciaría lo ya registrado).
   resumeFrom(d) {
+    mantenerPantallaEncendida(true);
     this.logged = d.logged || {};
     this.results = d.results || {};
     this.i = typeof d.i === "number" ? d.i : 0;
@@ -149,6 +151,7 @@ export class SessionRunner {
     if (!confirm("¿Salir sin guardar esta sesión?")) return;
     if (this.timer) this.timer.stop();
     clearDraft(this.user?.uid);
+    mantenerPantallaEncendida(false);
     if (this.onExit) this.onExit();
   }
   prevExercise() {
@@ -652,6 +655,7 @@ export class SessionRunner {
   }
 
   renderSummary() {
+    mantenerPantallaEncendida(false); // terminó el entrenamiento
     const entries = this.list
       .filter((item) => this.logged[item.exerciseId]?.sets.length)
       .map((item) => {

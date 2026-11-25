@@ -24,7 +24,7 @@ const $app = document.getElementById("app");
 let CURRENT = { user: null, uid: null };
 
 const IS_MOBILE = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
-const APP_VERSION = "v29"; // se sube junto con el caché del service worker
+const APP_VERSION = "v30"; // se sube junto con el caché del service worker
 
 // Completa un login por redirección al volver (y muestra el error si lo hubo).
 getRedirectResult(auth).catch((e) => {
